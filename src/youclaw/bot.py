@@ -7,7 +7,7 @@ import asyncio
 import logging
 import signal
 import sys
-from .config import config
+from .config import config, DATA_DIR
 from .ollama_client import ollama_client
 from .memory_manager import memory_manager
 from .scheduler_manager import scheduler_manager
@@ -22,7 +22,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler(config.DATA_DIR / 'youclaw.log')
+        logging.FileHandler(DATA_DIR / 'youclaw.log')
     ]
 )
 
