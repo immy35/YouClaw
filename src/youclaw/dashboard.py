@@ -164,7 +164,7 @@ async def api_stats(request):
             ollama_health = False
         
         stats = {
-            "version": "4.9.5",
+            "version": "4.9.8",
             "status": "online",
             "uptime": uptime_str,
             "ollama_connected": ollama_health,
@@ -177,7 +177,7 @@ async def api_stats(request):
             "active_personality": personality_name,
             "user_identity": f"{platform}:{user_id}" if user_id else "Guest",
             "is_linked": bool(user_id),
-            "model": ollama_client.model if ollama_health_bool else "Disconnected",
+            "model": ollama_client.model if ollama_health else "Disconnected",
             "is_admin": is_admin
         }
         
