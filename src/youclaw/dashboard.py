@@ -464,12 +464,37 @@ async def api_chat_stream(request):
             await response.write(chunk.encode())
             full_response += chunk
         
-        await memory_manager.add_message(ctx["platform"], ctx["user_id"], "assistant", full_response)
+        if "[SECURITY_INTERCEPT]" in full_response:
+             # We don't save the intercept raw string to conversation history 
+             # because it's a protocol internal, but we want the UI to see it.
+             pass
+        else:
+             await memory_manager.add_message(ctx["platform"], ctx["user_id"], "assistant", full_response)
+             
         await response.write_eof()
         return response
     except Exception as e:
         logger.error(f"Stream Error: {e}")
         return web.Response(text=f"Protocol Fault: {str(e)}", status=500)
+
+
+@routes.post('/api/security/approve')
+async def api_security_approve(request):
+    """Confirm execution of an intercepted command from the web"""
+    try:
+        data = await request.json()
+        req_id = data.get('request_id')
+        action = data.get('action') # 'approve' or 'deny'
+        
+        if action == "approve":
+            result = await skill_manager.confirm_execution(req_id)
+            return web.json_response({"success": True, "result": result})
+        else:
+            if req_id in skill_manager.pending_approvals:
+                del skill_manager.pending_approvals[req_id]
+            return web.json_response({"success": True, "message": "Denied"})
+    except Exception as e:
+        return web.json_response({"error": str(e)}, status=500)
 
 
 @routes.post('/api/model/switch')
@@ -751,6 +776,20 @@ DASHBOARD_HTML = """
         #admin-panel { display: none; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        .security-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--danger);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 10px 0;
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { border-color: rgba(239, 68, 68, 0.4); }
+            50% { border-color: rgba(239, 68, 68, 1); }
+            100% { border-color: rgba(239, 68, 68, 0.4); }
+        }
     </style>
 </head>
 <body>
@@ -1268,7 +1307,27 @@ DASHBOARD_HTML = """
                     
                     const chunk = decoder.decode(value, { stream: true });
                     fullAiResponse += chunk;
-                    aiMsg.innerHTML = marked.parse(fullAiResponse);
+                    
+                    if (fullAiResponse.includes("[SECURITY_INTERCEPT]")) {
+                        // Handle Iron Dome UI
+                        const parts = fullAiResponse.split(' ');
+                        const reqId = parts[1].split(':')[1];
+                        const cmd = parts[2].split(':')[1];
+                        
+                        aiMsg.className = 'msg msg-ai security-card';
+                        aiMsg.innerHTML = `
+                            <div style="font-weight: 800; color: var(--danger); margin-bottom: 10px;">🛡️ IRON DOME INTERCEPT</div>
+                            <p style="margin-bottom: 16px;">I need your permission to run: <code style="background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 6px;">${cmd}</code></p>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-primary" style="flex: 1; background: var(--secondary);" onclick="approveSecurity('${reqId}', this)">✅ Approve</button>
+                                <button class="btn btn-outline" style="flex: 1;" onclick="denySecurity('${reqId}', this)">❌ Deny</button>
+                            </div>
+                        `;
+                        // Stop streaming here
+                        break;
+                    } else {
+                        aiMsg.innerHTML = marked.parse(fullAiResponse);
+                    }
                     box.scrollTop = box.scrollHeight;
                 }
             } catch (err) {
@@ -1385,6 +1444,33 @@ DASHBOARD_HTML = """
             if(!confirm("Purge neural state? Permanent action.")) return;
             await apiCall('/api/memory/clear', 'POST');
             updateDashboard();
+        }
+
+        async function approveSecurity(reqId, btn) {
+            const card = btn.closest('.security-card');
+            card.innerHTML = `<div style="text-align: center; padding: 10px;"><span class="pulse"></span> Executing command...</div>`;
+            
+            try {
+                const res = await apiCall('/api/security/approve', 'POST', { action: 'approve', request_id: reqId });
+                if (res.success) {
+                    card.className = 'msg msg-ai';
+                    card.style.animation = 'none';
+                    card.style.borderColor = 'var(--border)';
+                    card.style.background = 'var(--bubble-ai)';
+                    card.innerHTML = `<div style="font-weight: 800; margin-bottom: 8px;">✅ Output:</div><pre style="white-space: pre-wrap; font-size: 0.85rem; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;">${res.result}</pre>`;
+                } else {
+                    card.innerHTML = `<div style="color: var(--danger);">Error: ${res.error || 'Execution failed'}</div>`;
+                }
+            } catch (e) {
+                card.innerHTML = `<div style="color: var(--danger);">Connection error</div>`;
+            }
+        }
+
+        async function denySecurity(reqId, btn) {
+            const card = btn.closest('.security-card');
+            await apiCall('/api/security/approve', 'POST', { action: 'deny', request_id: reqId });
+            card.innerHTML = `<div style="color: var(--danger); font-weight: 700;">❌ Action Denied</div>`;
+            setTimeout(() => card.remove(), 2000);
         }
 
         initDashboard();

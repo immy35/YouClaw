@@ -128,7 +128,13 @@ def shell_command(command: str) -> str:
 @skill_manager.skill(name="schedule_reminder", description="Schedule a reminder for the user at a specific time.")
 async def schedule_reminder(message: str, minutes_from_now: int, platform: str, user_id: str) -> str:
     """Useful for setting timers or reminders. The bot will message the user proactively."""
-    run_date = datetime.now() + timedelta(minutes=minutes_from_now)
+    try:
+        # Robust casting to handle "2" or "5.5" strings from LLM
+        minutes = float(minutes_from_now)
+    except ValueError:
+        return f"Error: '{minutes_from_now}' is not a valid number of minutes."
+        
+    run_date = datetime.now() + timedelta(minutes=minutes)
     await scheduler_manager.add_notification_job(
         platform=platform,
         user_id=user_id,
