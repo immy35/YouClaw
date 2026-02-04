@@ -23,52 +23,41 @@ class SearchClient:
         logger.info(f"🛰️ Neural Search Initiated on {url}: {query}")
         
         try:
+            params = {
+                "q": query,
+                "format": "json",
+                "safesearch": 1
+            }
+            
             async with aiohttp.ClientSession(headers=self.headers) as session:
-                async with session.get(url, params={"q": query}) as response:
+                async with session.get(url, params=params, timeout=15) as response:
                     if response.status != 200:
                         logger.error(f"Search engine returned status {response.status}")
-                        return f"Search engine offline (Status {response.status})"
+                        return f"## [SYSTEM ALERT: SEARCH NODE OFFLINE (Status {response.status})]"
                     
-                    html = await response.text()
-                    soup = BeautifulSoup(html, 'html.parser')
-                    
+                    data = await response.json()
                     results = []
                     
-                    # 1. Capture Infobox (Direct Answer/Fact Sheet)
-                    infobox = soup.select_one('.infobox, aside.infobox')
-                    if infobox:
-                        title = infobox.select_one('.title, h2')
-                        content = infobox.select_one('.content, p')
-                        if title and content:
-                            results.append(f"DIRECT ANSWER: {title.get_text(strip=True)}\nSUMMARY: {content.get_text(strip=True)}")
+                    # 1. Capture Infobox / Answer
+                    if data.get('infoboxes'):
+                        for info in data['infoboxes'][:1]:
+                            infobox_text = f"DIRECT ANSWER: {info.get('infobox', '')}\nSUMMARY: {info.get('content', '')}"
+                            results.append(infobox_text)
 
                     # 2. Capture regular results
-                    articles = soup.select('article.result') or soup.select('.result')
-                    for i, article in enumerate(articles[:5]):
-                        title_tag = article.select_one('h3 a, .title a')
-                        snippet_tag = article.select_one('.content, .snippet')
-                        date_tag = article.select_one('.published_date, .date')
+                    for i, result in enumerate(data.get('results', [])[:5]):
+                        title = result.get('title', 'Unknown Source')
+                        link = result.get('url', '')
+                        snippet = result.get('content', 'No details available.')
+                        date = result.get('publishedDate', 'Recent')
                         
-                        if title_tag:
-                            title = title_tag.get_text(strip=True)
-                            link = title_tag.get('href', '')
-                            snippet = snippet_tag.get_text(strip=True) if snippet_tag else "No details available."
-                            date = date_tag.get_text(strip=True) if date_tag else "Unknown Date"
-                            
-                            # Extract all highlight text to ensure key data isn't missed
-                            highlights = [h.get_text(strip=True) for h in article.select('.highlight')]
-                            if highlights:
-                                snippet = f"[KEY DATA: {' | '.join(highlights[:5])}] " + snippet
-                            
-                            # Clean up links (SearXNG sometimes wraps them)
-                            if link.startswith('/'):
-                                link = f"{url.split('/search')[0]}{link}"
-                                
-                            results.append(f"SOURCE [{i+1}]: {title} ({date})\nURL: {link}\nSUMMARY: {snippet}")
+                        # Clean snippet
+                        snippet = snippet.replace('<b>', '').replace('</b>', '')
+                        results.append(f"SOURCE [{i+1}]: {title} ({date})\nURL: {link}\nSUMMARY: {snippet}")
                     
                     if not results:
                         logger.warning("Search returned 0 results.")
-                        return "No real-time data found in the neural streams."
+                        return "## [SYSTEM WARNING: NEURAL SEARCH RETURNED NO LIVE DATA]"
                     
                     logger.info(f"✅ Search complete. Found {len(results)} items.")
                     return "\n\n".join(results)

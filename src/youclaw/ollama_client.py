@@ -486,7 +486,10 @@ class OllamaClient:
         # Phase 2: Real-Time vision (TOP PRIORITY FOR ACCURACY)
         context_block = ""
         if search_context:
-            context_block += f"\n### REAL-TIME VISION (URGENT):\nYour neural link has retrieved the following live data. This is more accurate than your training data. Use it!\n{search_context}\n"
+            if "SYSTEM ALERT" in search_context or "SYSTEM WARNING" in search_context:
+                context_block += f"\n### REAL-TIME VISION (OFFLINE):\n{search_context}\nCRITICAL: YOUR SEARCH NODE IS OFFLINE. DO NOT hallucinate prices or news. Tell the user your vision node is down if they ask for live data.\n"
+            else:
+                context_block += f"\n### REAL-TIME VISION (URGENT):\nYour neural link has retrieved the following live data. This is more accurate than your training data. Use it!\n{search_context}\n"
 
         # Phase 3: Memory & Semantic Context
         if query:
