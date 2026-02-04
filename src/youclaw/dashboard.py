@@ -1244,7 +1244,10 @@ DASHBOARD_HTML = """
 
             try {
                 const url = `/api/chat/stream?user=${encodeURIComponent(session_user)}&message=${encodeURIComponent(msg)}`;
-                const response = await fetch(url);
+                const token = localStorage.getItem('yc_session_token');
+                const response = await fetch(url, {
+                    headers: { 'X-Session-User': session_user, 'X-Session-Token': token }
+                });
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
                 
