@@ -15,56 +15,48 @@ class SearchClient:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
 
-    async def search(self, query: str) -> str:
+    async def search(self, query: str, use_fallback: bool = True) -> str:
         """
         Perform a search on SearXNG and return a synthesized summary of findings.
         """
-        url = config.search_url
-        logger.info(f"🛰️ Neural Search Initiated on {url}: {query}")
+        primary_url = config.search_url
+        # Stable public instances as Plan B
+        fallback_urls = [
+            "https://searx.be/search",
+            "https://searxng.site/search"
+        ]
         
-        try:
-            params = {
-                "q": query,
-                "format": "json",
-                "safesearch": 1
-            }
-            
-            async with aiohttp.ClientSession(headers=self.headers) as session:
-                async with session.get(url, params=params, timeout=15) as response:
-                    if response.status != 200:
-                        logger.error(f"Search engine returned status {response.status}")
-                        return f"## [SYSTEM ALERT: SEARCH NODE OFFLINE (Status {response.status})]"
-                    
-                    data = await response.json()
-                    results = []
-                    
-                    # 1. Capture Infobox / Answer
-                    if data.get('infoboxes'):
-                        for info in data['infoboxes'][:1]:
-                            infobox_text = f"DIRECT ANSWER: {info.get('infobox', '')}\nSUMMARY: {info.get('content', '')}"
-                            results.append(infobox_text)
+        urls_to_try = [primary_url] + (fallback_urls if use_fallback else [])
+        
+        for url in urls_to_try:
+            logger.info(f"🛰️ Neural Search Attempt on {url}: {query}")
+            try:
+                params = {"q": query, "format": "json", "safesearch": 1}
+                async with aiohttp.ClientSession(headers=self.headers) as session:
+                    async with session.get(url, params=params, timeout=10) as response:
+                        if response.status == 200:
+                            data = await response.json()
+                            results = []
+                            
+                            if data.get('infoboxes'):
+                                for info in data['infoboxes'][:1]:
+                                    results.append(f"DIRECT ANSWER: {info.get('infobox', '')}\nSUMMARY: {info.get('content', '')}")
 
-                    # 2. Capture regular results
-                    for i, result in enumerate(data.get('results', [])[:5]):
-                        title = result.get('title', 'Unknown Source')
-                        link = result.get('url', '')
-                        snippet = result.get('content', 'No details available.')
-                        date = result.get('publishedDate', 'Recent')
+                            for i, result in enumerate(data.get('results', [])[:5]):
+                                title = result.get('title', 'Source')
+                                link = result.get('url', '')
+                                snippet = result.get('content', '').replace('<b>', '').replace('</b>', '')
+                                results.append(f"SOURCE [{i+1}]: {title}\nURL: {link}\nSUMMARY: {snippet}")
+                            
+                            if results:
+                                logger.info(f"✅ Search successful on {url}")
+                                return "\n\n".join(results)
                         
-                        # Clean snippet
-                        snippet = snippet.replace('<b>', '').replace('</b>', '')
-                        results.append(f"SOURCE [{i+1}]: {title} ({date})\nURL: {link}\nSUMMARY: {snippet}")
-                    
-                    if not results:
-                        logger.warning("Search returned 0 results.")
-                        return "## [SYSTEM WARNING: NEURAL SEARCH RETURNED NO LIVE DATA]"
-                    
-                    logger.info(f"✅ Search complete. Found {len(results)} items.")
-                    return "\n\n".join(results)
-                    
-        except Exception as e:
-            logger.error(f"Search Execution Fault: {e}")
-            return f"Neural Search Error: {str(e)}"
+                        logger.warning(f"Search node {url} failed with status {response.status}")
+            except Exception as e:
+                logger.error(f"Search failure on {url}: {e}")
+                
+        return "## [SYSTEM ALERT: ALL SEARCH NODES OFFLINE] - No live data reached the core."
 
 # Global search client instance
 search_client = SearchClient()
