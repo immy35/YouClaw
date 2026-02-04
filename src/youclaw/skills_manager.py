@@ -118,11 +118,17 @@ class SkillManager:
             return f"[SECURITY_INTERCEPT] ID:{request_id} COMMAND:{name}"
 
         try:
-            logger.info(f"Executing skill '{name}' with args: {arguments}")
+            # Filter arguments to verify they match function signature
+            valid_args = {}
+            for param_name in skill['parameters']:
+                if param_name in arguments:
+                    valid_args[param_name] = arguments[param_name]
+            
+            logger.info(f"Executing skill '{name}' with filtered args: {valid_args}")
             if skill['is_async']:
-                result = await skill['func'](**arguments)
+                result = await skill['func'](**valid_args)
             else:
-                result = skill['func'](**arguments)
+                result = skill['func'](**valid_args)
             return result
         except Exception as e:
             logger.error(f"Error executing skill '{name}': {e}", exc_info=True)
