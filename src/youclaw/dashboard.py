@@ -164,7 +164,7 @@ async def api_stats(request):
             ollama_health = False
         
         stats = {
-            "version": "4.9.4",
+            "version": "4.9.5",
             "status": "online",
             "uptime": uptime_str,
             "ollama_connected": ollama_health,
@@ -286,7 +286,7 @@ async def api_delete_job(request):
 @routes.get('/api/system/personality')
 async def api_get_personality(request):
     """Get list of personalities and current active one"""
-    from personality_manager import PERSONALITIES, DEFAULT_PERSONALITY
+    from .personality_manager import PERSONALITIES, DEFAULT_PERSONALITY
     active = await memory_manager.get_global_setting("active_personality", DEFAULT_PERSONALITY)
     return web.json_response({
         "personalities": PERSONALITIES,
@@ -301,7 +301,7 @@ async def api_set_personality(request):
     try:
         data = await request.json()
         key = data.get('personality')
-        from personality_manager import PERSONALITIES
+        from .personality_manager import PERSONALITIES
         if key in PERSONALITIES:
             await memory_manager.set_global_setting("active_personality", key)
             return web.json_response({"success": True})
@@ -491,7 +491,7 @@ DASHBOARD_HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouClaw V4.8.9 | Justice Neural Hub 🦞</title>
+    <title>YouClaw V4.9.5 | Justice Neural Hub 🦞</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -784,7 +784,7 @@ DASHBOARD_HTML = """
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="app-sidebar" style="display: none;">
         <div>
-            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.8.9</span></div>
+            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.9.5</span></div>
             <div class="nav-list">
                 <div class="nav-item active" id="nav-dash" onclick="switchView('dashboard')"><i>📊</i> Control Center</div>
                 <div class="nav-item" id="nav-chat" onclick="switchView('chat')"><i>💬</i> Neural Terminal</div>
@@ -1383,7 +1383,7 @@ DASHBOARD_HTML = """
         }
 
         initDashboard();
-        console.log("🦞 YouClaw Dashboard v4.8.8 loaded successfully");
+        console.log("🦞 YouClaw Dashboard v4.9.5 loaded successfully");
     </script>
 </body>
 </html>
