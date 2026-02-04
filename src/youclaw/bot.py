@@ -40,7 +40,7 @@ class YouClaw:
     
     async def initialize(self):
         """Initialize bot cores"""
-        logger.info("🦞 Initializing YouClaw...")
+        logger.info("🦞 INITIALIZING YOUCLAW V5 (LIQUID MEMORY) 🦞")
         
         # Initialize memory manager
         await memory_manager.initialize()

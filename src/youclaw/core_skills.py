@@ -236,7 +236,7 @@ async def update_my_profile(name: Optional[str] = None, interests: Optional[str]
         if name: parts.append(f"name as {name}")
         if interests: parts.append(f"interest in {interests}")
         
-        return f"✨ Memory Synapsed! I've saved your {' and '.join(parts)}. I'll hold onto this for our future conversations. 🦞"
+        return f"✨ NEURAL SYNC COMPLETE: I've saved your {' and '.join(parts)}. I will refer to you as {name or 'Partner'} from now on. 🦞"
     except Exception as e:
         return f"Error updating neural profile: {str(e)}"
 
