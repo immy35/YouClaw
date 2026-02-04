@@ -214,3 +214,22 @@ async def watch_url(url: str, interval_minutes: int, platform: str, user_id: str
         job_id=job_id
     )
     return f"I've set up a watchdog for {url}. I'll check it every {interval_minutes} minutes and alert you if I see issues."
+@skill_manager.skill(name="update_my_profile", description="Save personal information about yourself (name, interests) so I can remember you.")
+async def update_my_profile(name: Optional[str] = None, interests: Optional[str] = None, platform: str = "", user_id: str = "") -> str:
+    """Updates your personal profile. Use this when you tell me your name or what you like."""
+    from .memory_manager import memory_manager
+    update_data = {}
+    if name: update_data['name'] = name
+    if interests: update_data['interests'] = interests
+    
+    if not update_data:
+        return "You didn't provide any new information to update!"
+        
+    await memory_manager.update_user_profile(platform, user_id, **update_data)
+    
+    parts = []
+    if name: parts.append(f"name to {name}")
+    if interests: parts.append(f"interests to {interests}")
+    
+    return f"I've updated your profile! I'll remember your {' and '.join(parts)} from now on. 🦞✨"
+
