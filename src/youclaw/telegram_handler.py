@@ -232,7 +232,10 @@ class TelegramHandler:
     async def stop(self):
         """Stop the Telegram bot"""
         if self.app:
-            await self.app.updater.stop()
+            try:
+                await self.app.updater.stop()
+            except RuntimeError:
+                pass # Already stopped
             await self.app.stop()
             await self.app.shutdown()
             logger.info("Telegram bot stopped")

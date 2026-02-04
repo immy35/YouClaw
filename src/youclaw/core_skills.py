@@ -11,6 +11,7 @@ import smtplib
 import email
 from email.message import EmailMessage
 from datetime import datetime, timedelta
+from typing import List, Dict, Optional, Any
 from .config import config
 from .skills_manager import skill_manager
 from .scheduler_manager import scheduler_manager
