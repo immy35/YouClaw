@@ -92,6 +92,7 @@ class SchedulerManager:
 
     async def add_ai_cron_job(self, platform: str, user_id: str, prompt: str, cron_expr: str, job_id: str):
         """Schedule a recurring AI reasoning task"""
+        # 1. Schedule the recurring job
         self.scheduler.add_job(
             run_ai_job_task,
             'cron',
@@ -100,7 +101,17 @@ class SchedulerManager:
             replace_existing=True,
             **self._parse_cron(cron_expr)
         )
-        logger.info(f"Scheduled AI Pulse job {job_id} for {user_id}: {prompt[:30]}...")
+        logger.info(f"💾 Scheduled AI Pulse job {job_id} for {user_id}")
+
+        # 2. Trigger one instance IMMEDIATELY so the user knows it works
+        self.scheduler.add_job(
+            run_ai_job_task,
+            'date',
+            run_date=datetime.now(),
+            args=[platform, user_id, prompt],
+            id=f"{job_id}_initial"
+        )
+        logger.info(f"🚀 Triggered immediate run for job {job_id}")
 
     async def add_watcher_job(self, platform: str, user_id: str, target_url: str, interval_minutes: int, job_id: str):
         """Schedule a background URL monitoring task"""
@@ -162,7 +173,8 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
     from .ollama_client import ollama_client
     from datetime import datetime
     
-    logger.info(f"Running AI Cron Job for {user_id} on {platform}: {prompt[:50]}")
+    logger.info(f"🤖 [CORE] Starting AI Cron Job: User={user_id} Platform={platform}")
+    logger.debug(f"Prompt: {prompt[:100]}...")
     
     # Fetch recent history to avoid repetition
     history = await memory_manager.get_conversation_history(platform, user_id, limit=5)
@@ -193,6 +205,7 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
             messages=history + [{"role": "user", "content": enhanced_prompt}],
             context=context
         )
+        logger.info(f"🧠 [CORE] AI processed cron request. Response length: {len(response) if response else 0}")
         
         if response:
             logger.info(f"AI Cron Job for {user_id} produced response (length: {len(response)}). Sending...")
