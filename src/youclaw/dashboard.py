@@ -790,9 +790,52 @@ DASHBOARD_HTML = """
             50% { border-color: rgba(239, 68, 68, 1); }
             100% { border-color: rgba(239, 68, 68, 0.4); }
         }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 100000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+        }
+        .toast {
+            min-width: 300px;
+            padding: 16px 24px;
+            border-radius: 16px;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            pointer-events: auto;
+            animation: toastEnter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        @keyframes toastEnter {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .toast.exit {
+            animation: toastExit 0.4s forwards;
+        }
+        @keyframes toastExit {
+            to { opacity: 0; transform: translateX(20px); }
+        }
+        .toast-success { border-left: 4px solid var(--secondary); }
+        .toast-error { border-left: 4px solid var(--danger); }
+        .toast-info { border-left: 4px solid var(--primary); }
     </style>
 </head>
 <body>
+    <div id="toast-container"></div>
 
     <!-- Auth Layer -->
     <div id="auth-overlay" class="auth-portal">
@@ -1096,8 +1139,8 @@ DASHBOARD_HTML = """
             const u = document.getElementById('reg-username').value;
             const p = document.getElementById('reg-password').value;
             const res = await apiCall('/api/auth/register', 'POST', { username:u, password:p });
-            if(res.success) { alert("Access granted. Initializing auth..."); showAuthView('login-view'); }
-            else alert("Protocol Denied: " + res.error);
+            if(res.success) { showToast("Protocol Initialized. Welcome to YouClaw.", "success"); showAuthView('login-view'); }
+            else showToast("Protocol Denied: " + res.error, "error");
         }
 
         async function doLogin() {
@@ -1109,15 +1152,16 @@ DASHBOARD_HTML = """
                 localStorage.setItem('yc_session_user', u);
                 localStorage.setItem('yc_session_token', res.user.token);
                 initDashboard();
-            } else alert("Neural auth failed.");
+                showToast("Neural sync established.", "success");
+            } else showToast("Neural auth failed.", "error");
         }
 
         async function doLink() {
             const p = document.getElementById('link-platform').value;
             const id = document.getElementById('link-id').value;
             const res = await apiCall('/api/auth/link', 'POST', { platform:p, user_id:id });
-            if(res.success) { alert("Link Established."); location.reload(); }
-            else alert("Link Fault.");
+            if(res.success) { showToast("Identity Synced.", "success"); location.reload(); }
+            else showToast("Link Fault.", "error");
         }
 
         function doLogout() { 
@@ -1146,6 +1190,20 @@ DASHBOARD_HTML = """
             const res = await fetch(url, options);
             const data = await res.json();
             return data;
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            const icon = type === 'success' ? '✅' : (type === 'error' ? '❌' : 'ℹ️');
+            toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('exit');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
         }
 
         async function initDashboard() {
@@ -1238,7 +1296,7 @@ DASHBOARD_HTML = """
 
         async function toggleChannel(channel, el) {
             const res = await apiCall('/api/system/toggle_channel', 'POST', { channel: channel, enabled: el.checked });
-            if(!res.success) { alert("Toggle Failure."); el.checked = !el.checked; }
+            if(!res.success) { showToast("Toggle Failure.", "error"); el.checked = !el.checked; }
         }
 
         async function scheduleCron() {
@@ -1246,8 +1304,8 @@ DASHBOARD_HTML = """
             const freq = document.getElementById('cron-freq').value;
             const sel = document.getElementById('cron-channel');
             const channel = sel.value;
-            if(!prompt) return alert("Briefing required.");
-            if(sel.options[sel.selectedIndex].disabled) return alert("Selected channel is offline. Activate it first.");
+            if(!prompt) return showToast("Briefing required.", "error");
+            if(sel.options[sel.selectedIndex].disabled) return showToast("Selected channel is offline. Activate it first.", "error");
             
             const res = await apiCall('/api/jobs/schedule', 'POST', { 
                 prompt: prompt, 
@@ -1255,10 +1313,10 @@ DASHBOARD_HTML = """
                 channel: channel 
             });
             if(res.success) {
-                alert("Cron Job Activated! 🚀");
+                showToast("Cron Job Activated! 🚀", "success");
                 document.getElementById('cron-prompt').value = '';
                 updateDashboard();
-            } else alert("Activation Fault: " + res.error);
+            } else showToast("Activation Fault: " + res.error, "error");
         }
 
         async function sendChat() {
@@ -1403,7 +1461,7 @@ DASHBOARD_HTML = """
             if(res.success) {
                 loadPersonalities();
                 updateDashboard();
-            } else alert("Personality shift failed.");
+            } else showToast("Personality shift failed.", "error");
         }
 
         async function saveSecrets(btn) {
@@ -1427,7 +1485,7 @@ DASHBOARD_HTML = """
                 if(res.ollama_status !== "unchanged") {
                     msg += " AI Core Status: " + res.ollama_status.toUpperCase();
                 }
-                alert(msg);
+                showToast(msg, "success");
                 updateDashboard();
             }
             btn.innerText = "Apply Changes"; btn.disabled = false;
@@ -1436,7 +1494,7 @@ DASHBOARD_HTML = """
         async function switchModel(btn) {
             btn.innerText = "Migrating..."; btn.disabled = true;
             const res = await apiCall('/api/model/switch', 'POST', { model: document.getElementById('model-list').value });
-            if(res.success) alert("Neural engine migrated.");
+            if(res.success) showToast("Neural engine migrated.", "success");
             btn.innerText = "Migrate Core"; btn.disabled = false;
         }
 
