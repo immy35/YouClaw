@@ -3,7 +3,7 @@ YouClaw - Your Personal AI Assistant
 Universal Neural Core for Telegram, Discord, and Web Dashboard
 """
 
-__version__ = "4.8.5"
+__version__ = "4.8.8"
 __author__ = "Imran"
 
 from .bot import youclaw_bot, main

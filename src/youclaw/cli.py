@@ -225,8 +225,10 @@ class YouClawCLI:
         email_imap = clean_input("   - IMAP Host (default: imap.gmail.com): ", "imap.gmail.com")
         email_smtp = clean_input("   - SMTP Host (default: smtp.gmail.com): ", "smtp.gmail.com")
 
-        # Write to .env with proper quoting
-        env_path = Path(".env")
+        # Write to stable path
+        from .config import DATA_DIR, ENV_PATH
+        env_path = ENV_PATH
+        db_path = DATA_DIR / "youclaw.db"
         env_content = [
             "# YouClaw Managed Configuration",
             f'OLLAMA_HOST="{ollama_host}"',
@@ -241,7 +243,7 @@ class YouClawCLI:
             f'EMAIL_IMAP_HOST="{email_imap}"',
             f'EMAIL_SMTP_HOST="{email_smtp}"',
             f'ENABLE_EMAIL="{"true" if email_user else "false"}"',
-            "DATABASE_PATH=./data/bot.db",
+            f'DATABASE_PATH="{db_path}"',
             "ADMIN_USER_IDENTITY=telegram:default"
         ]
 
@@ -276,7 +278,7 @@ class YouClawCLI:
                 # PID file exists but process is dead, clean it up
                 pid_file.unlink()
 
-        print(f"🦞 Starting YouClaw v4.8.5 in background...")
+        print(f"🦞 Starting YouClaw v4.8.8 in background...")
         
         if foreground:
             print("🦞 Starting YouClaw in foreground mode...")
