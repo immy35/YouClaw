@@ -6,13 +6,19 @@ Centralized configuration with environment variable loading and validation.
 import os
 from dataclasses import dataclass
 from typing import Optional
-from dotenv import load_dotenv
-import logging
+from pathlib import Path
 
-logger = logging.getLogger(__name__)
+# Permanent Data Directory (~/.youclaw)
+DATA_DIR = Path.home() / ".youclaw"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-# Load environment variables from .env file
-load_dotenv()
+# Path to .env file
+ENV_PATH = DATA_DIR / ".env"
+
+# Load environment variables (from standard locations and our permanent home)
+load_dotenv() # Load from CWD first for dev
+if ENV_PATH.exists():
+    load_dotenv(dotenv_path=ENV_PATH, override=True) # Override with permanent secrets
 
 
 @dataclass
@@ -65,7 +71,7 @@ class BotConfig:
     """General bot configuration"""
     prefix: str = os.getenv("BOT_PREFIX", "!")
     max_context_messages: int = int(os.getenv("MAX_CONTEXT_MESSAGES", "20"))
-    database_path: str = os.getenv("DATABASE_PATH", "./data/bot.db")
+    database_path: str = os.getenv("DATABASE_PATH", str(DATA_DIR / "youclaw.db"))
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
     search_url: str = os.getenv("SEARCH_ENGINE_URL", "http://57.128.250.34:8080/search")
     admin_user_identity: str = os.getenv("ADMIN_USER_IDENTITY", "telegram:default") # format platform:id

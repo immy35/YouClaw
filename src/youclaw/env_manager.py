@@ -12,8 +12,9 @@ logger = logging.getLogger(__name__)
 class EnvManager:
     """Manages reading and writing to the .env file"""
     
-    def __init__(self, env_path: str = ".env"):
-        self.env_path = Path(env_path)
+    def __init__(self, env_path: str = None):
+        from .config import ENV_PATH
+        self.env_path = Path(env_path) if env_path else ENV_PATH
     
     def get_all(self) -> dict:
         """Read all environment variables from the file"""

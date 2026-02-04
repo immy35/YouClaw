@@ -133,11 +133,12 @@ class YouClawCLI:
         print("\n" + "=" * 50)
         return 0
     
-    def cmd_status(self, args):
+    async def cmd_status(self, args):
         """Show service status"""
+        from .config import DATA_DIR
         print("🦞 YouClaw Status\n")
         
-        pid_file = Path("./data/youclaw.pid")
+        pid_file = DATA_DIR / "youclaw.pid"
         
         if not pid_file.exists():
             print("Status: ⚪ Not Running")
@@ -166,18 +167,24 @@ class YouClawCLI:
     
     def cmd_logs(self, args):
         """View logs"""
-        print("🦞 YouClaw Logs (Ctrl+C to exit)\n")
+        from .config import DATA_DIR
+        log_file = DATA_DIR / "youclaw.log"
+        print(f"🦞 YouClaw Logs: {log_file} (Ctrl+C to exit)\n")
         
-        cmd = ["journalctl", "--user", "-u", "youclaw"]
-        
+        if not log_file.exists():
+            print("❌ No log file found.")
+            return 1
+            
+        cmd = ["tail", "-n", str(args.lines or 50)]
         if args.follow:
             cmd.append("-f")
+        cmd.append(str(log_file))
         
-        if args.lines:
-            cmd.extend(["-n", str(args.lines)])
-        
-        result = subprocess.run(cmd)
-        return result.returncode
+        try:
+            result = subprocess.run(cmd)
+            return result.returncode
+        except KeyboardInterrupt:
+            return 0
     
     async def run_wizard(self):
         """Interactive on-boarding wizard for YouClaw clones"""
@@ -247,15 +254,16 @@ class YouClawCLI:
 
     async def cmd_start(self, args):
         """Start YouClaw service"""
+        from .config import DATA_DIR, ENV_PATH
         foreground = "--foreground" in args or "-f" in args
         
-        if not Path(".env").exists():
+        if not ENV_PATH.exists():
             print("⚠️ No configuration found. Launching Neural Wizard...")
             await self.run_wizard()
             return 0
 
         # Check if already running
-        pid_file = Path("./data/youclaw.pid")
+        pid_file = DATA_DIR / "youclaw.pid"
         if pid_file.exists():
             try:
                 pid = int(pid_file.read_text().strip())
@@ -268,7 +276,7 @@ class YouClawCLI:
                 # PID file exists but process is dead, clean it up
                 pid_file.unlink()
 
-        print(f"🦞 Starting YouClaw v4.8.4 in background...")
+        print(f"🦞 Starting YouClaw v4.8.5 in background...")
         
         if foreground:
             print("🦞 Starting YouClaw in foreground mode...")
@@ -322,7 +330,8 @@ class YouClawCLI:
     
     def cmd_stop(self, args):
         """Stop YouClaw service"""
-        pid_file = Path("./data/youclaw.pid")
+        from .config import DATA_DIR
+        pid_file = DATA_DIR / "youclaw.pid"
         
         if not pid_file.exists():
             print("⚠️ YouClaw is not running (no PID file found)")
