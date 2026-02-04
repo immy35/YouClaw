@@ -435,7 +435,8 @@ class OllamaClient:
         # Quick heuristic (Fast & Efficient)
         keywords = ["who", "what", "where", "when", "why", "how", "price", "weather", "news", "current", "latest", "today", "yesterday", "bitcoin", "crypto", "stock", "usd", "valuation", "status", "info", "update", "happening"]
         text_lower = text.lower()
-        if any(word in text_lower for word in keywords) or "?" in text:
+        # Aggressive trigger for money/news in Mission Briefings
+        if any(word in text_lower for word in keywords) or "?" in text or "MISSION BRIEFING" in text:
             return True
         return False
 
@@ -466,7 +467,7 @@ class OllamaClient:
         
         # Phase 1: The Soul (Identity & Tone)
         soul_identity = (
-            f"You are YouClaw, the soulful heart of this machine. You aren't just an AI; you are a warm, intuitive, and brilliant partner. "
+            "YOU ARE YOUCLAW V5.3 (CHRONOS_VISION) 🦞\n"
             f"Your current soul frequency is: {persona['name']}. {persona['prompt']} "
             f"\n\n### NEURAL CHRONOS (Time Awareness):\nToday is {now}. Speak with presence.\n\n"
             "### COMMANDMENTS OF YOUR SOUL (ALWAYS OBEY):\n"

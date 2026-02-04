@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="no-js theme-auto center-alignment-no" lang="en-EN" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="endpoint" content="results">
+  <meta name="description" content="SearXNG — a privacy-respecting, open metasearch engine">
+  <meta name="keywords" content="SearXNG, search, search engine, metasearch, meta search">
+  <meta name="generator" content="searxng/2026.1.27+966988e36">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SearXNG</title>
+  <script type="module" src="/static/themes/simple/sxng-core.min.js" client_settings="eyJwbHVnaW5zIjogWyJzZWxmX2luZm8iLCAidGltZV96b25lIiwgImNhbGN1bGF0b3IiLCAidW5pdF9jb252ZXJ0ZXIiLCAiaGFzaF9wbHVnaW4iLCAidHJhY2tlcl91cmxfcmVtb3ZlciJdLCAiYXV0b2NvbXBsZXRlIjogIiIsICJhdXRvY29tcGxldGVfbWluIjogNCwgIm1ldGhvZCI6ICJQT1NUIiwgInRyYW5zbGF0aW9ucyI6IHsibm9faXRlbV9mb3VuZCI6ICJObyBpdGVtIGZvdW5kIiwgIlNvdXJjZSI6ICJTb3VyY2UiLCAiZXJyb3JfbG9hZGluZ19uZXh0X3BhZ2UiOiAiRXJyb3IgbG9hZGluZyB0aGUgbmV4dCBwYWdlIn0sICJzZWFyY2hfb25fY2F0ZWdvcnlfc2VsZWN0IjogdHJ1ZSwgImhvdGtleXMiOiAiZGVmYXVsdCIsICJ1cmxfZm9ybWF0dGluZyI6ICJwcmV0dHkiLCAidGhlbWVfc3RhdGljX3BhdGgiOiAiL3N0YXRpYy90aGVtZXMvc2ltcGxlIiwgInJlc3VsdHNfb25fbmV3X3RhYiI6IGZhbHNlLCAiZmF2aWNvbl9yZXNvbHZlciI6ICIiLCAiYWR2YW5jZWRfc2VhcmNoIjogZmFsc2UsICJxdWVyeV9pbl90aXRsZSI6IGZhbHNlLCAic2FmZXNlYXJjaCI6IDAsICJ0aGVtZSI6ICJzaW1wbGUiLCAiZG9pX3Jlc29sdmVyIjogImh0dHBzOi8vb2Fkb2kub3JnLyJ9"></script>
+<link rel="alternate" type="application/rss+xml" title="Searx search: bitcoin price" href="http://57.128.250.34:8080/search?q=bitcoin%20price&amp;categories=general&amp;pageno=1&amp;time_range=&amp;language=auto&amp;safesearch=0&amp;format=rss">  <link rel="stylesheet" href="/static/themes/simple/sxng-ltr.min.css" type="text/css" media="screen">
+  <link title="SearXNG" type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml?method=POST&amp;autocomplete=">
+  <link rel="icon" href="/static/themes/simple/img/favicon.png" sizes="any">
+  <link rel="icon" href="/static/themes/simple/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/static/themes/simple/img/favicon.png">
+</head>
+<body class="results_endpoint" >
+  <main id="main_results" class="">
+
+    <nav id="links_on_top"><a href="/info/en/about" class="link_on_top_about"><svg viewBox="0 0 512 512" aria-hidden="true" class="sxng-icon-set-big"><path d="M248 64C146.39 64 64 146.39 64 248s82.39 184 184 184 184-82.39 184-184S349.61 64 248 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M220 220h32v116"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M208 340h88"/><path d="M248 130a26 26 0 1026 26 26 26 0 00-26-26z" fill="currentColor" stroke="currentColor" stroke-miterlimit="10" stroke-width="1"/></svg><span>About</span></a><a href="/preferences" class="link_on_top_preferences"><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M262.29 192.31a64 64 0 1 0 57.4 57.4 64.13 64.13 0 0 0-57.4-57.4M416.39 256a154 154 0 0 1-1.53 20.79l45.21 35.46a10.81 10.81 0 0 1 2.45 13.75l-42.77 74a10.81 10.81 0 0 1-13.14 4.59l-44.9-18.08a16.11 16.11 0 0 0-15.17 1.75A164.5 164.5 0 0 1 325 400.8a15.94 15.94 0 0 0-8.82 12.14l-6.73 47.89a11.08 11.08 0 0 1-10.68 9.17h-85.54a11.11 11.11 0 0 1-10.69-8.87l-6.72-47.82a16.07 16.07 0 0 0-9-12.22 155 155 0 0 1-21.46-12.57 16 16 0 0 0-15.11-1.71l-44.89 18.07a10.81 10.81 0 0 1-13.14-4.58l-42.77-74a10.8 10.8 0 0 1 2.45-13.75l38.21-30a16.05 16.05 0 0 0 6-14.08c-.36-4.17-.58-8.33-.58-12.5s.21-8.27.58-12.35a16 16 0 0 0-6.07-13.94l-38.19-30A10.81 10.81 0 0 1 49.48 186l42.77-74a10.81 10.81 0 0 1 13.14-4.59l44.9 18.08a16.11 16.11 0 0 0 15.17-1.75A164.5 164.5 0 0 1 187 111.2a15.94 15.94 0 0 0 8.82-12.14l6.73-47.89A11.08 11.08 0 0 1 213.23 42h85.54a11.11 11.11 0 0 1 10.69 8.87l6.72 47.82a16.07 16.07 0 0 0 9 12.22 155 155 0 0 1 21.46 12.57 16 16 0 0 0 15.11 1.71l44.89-18.07a10.81 10.81 0 0 1 13.14 4.58l42.77 74a10.8 10.8 0 0 1-2.45 13.75l-38.21 30a16.05 16.05 0 0 0-6.05 14.08c.33 4.14.55 8.3.55 12.47" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><span>Preferences</span></a></nav>
+<form id="search" method="POST" action="/search" role="search">
+  <div id="search_header">
+    <a id="search_logo" href="/" tabindex="0" title="Display the front page">
+      <span hidden>SearXNG</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="92mm" height="92mm" viewBox="0 0 92 92"><g transform="translate(-40.921 -17.417)"><circle cx="75.921" cy="53.903" r="30" fill="none" fill-opacity="1" stroke="#3050ff" stroke-width="10" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1"/><path d="M67.515 37.915a18 18 0 0 1 21.051 3.313 18 18 0 0 1 3.138 21.078" fill="none" fill-opacity="1" stroke="#3050ff" stroke-width="5" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1"/><rect width="18.846" height="39.963" x="3.706" y="122.09" ry="0" transform="rotate(-46.235)" opacity="1" fill="#3050ff" fill-opacity="1" stroke="none" stroke-width="8" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1"/></g></svg>    </a>
+    <div id="search_view">
+      <div class="search_box">
+        <input id="q" name="q" type="text" placeholder="Search for..." tabindex="1" autocomplete="off" autocapitalize="none" spellcheck="false" autocorrect="off" dir="auto" value="bitcoin price">
+        <button id="clear_search" type="reset" aria-label="clear" class="hide_if_nojs"><span><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M368 368 144 144M368 144 144 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg></span><span class="show_if_nojs">clear</span></button>
+        <button id="send_search" type="submit"name="category_general"aria-label="search"><span class="hide_if_nojs"><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><path d="M338.29 338.29 448 448" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"/></svg></span><span class="show_if_nojs">search</span></button>
+        <div class="autocomplete hide_if_nojs"><ul></ul></div>
+      </div>
+    </div>
+<div id="categories" class="search_categories"><div id="categories_container">
+<button type="submit" name="category_general" class="category category_button selected"><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><path d="M338.29 338.29 448 448" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"/></svg><div class="category_name">general</div></button>
+<button type="submit" name="category_images" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"/><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">images</div></button>
+<button type="submit" name="category_videos" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M112 111v290c0 17.44 17 28.52 31 20.16l247.9-148.37c12.12-7.25 12.12-26.33 0-33.58L143 90.84c-14-8.36-31 2.72-31 20.16Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><div class="category_name">videos</div></button>
+<button type="submit" name="category_news" class="category category_button "><svg viewBox="0 0 512 512" aria-hidden="true" class="sxng-icon-set-big"><path d="M368 415.86V72a24.07 24.07 0 00-24-24H72a24.07 24.07 0 00-24 24v352a40.12 40.12 0 0040 40h328" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M416 464h0a48 48 0 01-48-48V128h72a24 24 0 0124 24v264a48 48 0 01-48 48z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M240 128h64M240 192h64M112 256h192M112 320h192M112 384h192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M176 208h-64a16 16 0 01-16-16v-64a16 16 0 0116-16h64a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1"/></svg><div class="category_name">news</div></button>
+<button type="submit" name="category_map" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0 0 25.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><circle cx="256" cy="192" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">map</div></button>
+<button type="submit" name="category_music" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M192 218v-6c0-14.84 10-27 24.24-30.59l174.59-46.68A20 20 0 0 1 416 154v22" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><path d="M416 295.94v80c0 13.91-8.93 25.59-22 30l-22 8c-25.9 8.72-52-10.42-52-38h0a33.37 33.37 0 0 1 23-32l51-18.15c13.07-4.4 22-15.94 22-29.85V58a10 10 0 0 0-12.6-9.61L204 102a16.48 16.48 0 0 0-12 16v226c0 13.91-8.93 25.6-22 30l-52 18c-13.88 4.68-22 17.22-22 32h0c0 27.58 26.52 46.55 52 38l22-8c13.07-4.4 22-16.08 22-30v-80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">music</div></button>
+<button type="submit" name="category_it" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="m434.8 137.65-149.36-68.1c-16.19-7.4-42.69-7.4-58.88 0L77.3 137.65c-17.6 8-17.6 21.09 0 29.09l148 67.5c16.89 7.7 44.69 7.7 61.58 0l148-67.5c17.52-8 17.52-21.1-.08-29.09M160 308.52l-82.7 37.11c-17.6 8-17.6 21.1 0 29.1l148 67.5c16.89 7.69 44.69 7.69 61.58 0l148-67.5c17.6-8 17.6-21.1 0-29.1l-79.94-38.47" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><path d="m160 204.48-82.8 37.16c-17.6 8-17.6 21.1 0 29.1l148 67.49c16.89 7.7 44.69 7.7 61.58 0l148-67.49c17.7-8 17.7-21.1.1-29.1L352 204.48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">it</div></button>
+<button type="submit" name="category_science" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M32 192 256 64l224 128-224 128z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><path d="M112 240v128l144 80 144-80V240M480 368V192M256 320v128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">science</div></button>
+<button type="submit" name="category_files" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M384 80H128c-26 0-43 14-48 40L48 272v112a48.14 48.14 0 0 0 48 48h320a48.14 48.14 0 0 0 48-48V272l-32-152c-5-27-23-40-48-40Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"/><path d="M48 272h144M320 272h144M192 272a64 64 0 0 0 128 0M144 144h224M128 208h256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg><div class="category_name">files</div></button>
+<button type="submit" name="category_social media" class="category category_button "><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-big" aria-hidden="true"><path d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><path d="M336 304c-65.17 0-127.84 32.37-143.54 95.41-2.08 8.34 3.15 16.59 11.72 16.59h263.65c8.57 0 13.77-8.25 11.72-16.59C463.85 335.36 401.18 304 336 304Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><path d="M200 185.94c-2.34 32.48-26.72 58.06-53 58.06s-50.7-25.57-53-58.06C91.61 152.15 115.34 128 147 128s55.39 24.77 53 57.94" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/><path d="M206 306c-18.05-8.27-37.93-11.45-59-11.45-52 0-102.1 25.85-114.65 76.2-1.65 6.66 2.53 13.25 9.37 13.25H154" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"/></svg><div class="category_name">social media</div></button><input name="categories" id="selected-categories" type="hidden" />
+</div></div>  </div>
+  <div class="search_filters">
+<select class="language" id="language" name="language" aria-label="Search language"><option value="all">Default language [all]</option><option value="auto" selected="selected">Auto-detect (auto)</option><option value="af">
+            Afrikaans [af] 🌐</option><option value="ca">
+            Català [ca] 🌐</option><option value="cy">
+            Cymraeg [cy] 🌐</option><option value="da">
+            Dansk [da] 🌐</option><option value="da-DK">
+            Dansk-Danmark [da-DK] 🇩🇰</option><option value="de">
+            Deutsch [de] 🌐</option><option value="de-AT">
+            Deutsch-Österreich [de-AT] 🇦🇹</option><option value="de-BE">
+            Deutsch-Belgien [de-BE] 🇧🇪</option><option value="de-CH">
+            Deutsch-Schweiz [de-CH] 🇨🇭</option><option value="de-DE">
+            Deutsch-Deutschland [de-DE] 🇩🇪</option><option value="et">
+            Eesti [et] 🌐</option><option value="et-EE">
+            Eesti-Eesti [et-EE] 🇪🇪</option><option value="en">
+            English [en] 🌐</option><option value="en-AU">
+            English-Australia [en-AU] 🇦🇺</option><option value="en-CA">
+            English-Canada [en-CA] 🇨🇦</option><option value="en-GB">
+            English-United Kingdom [en-GB] 🇬🇧</option><option value="en-IE">
+            English-Ireland [en-IE] 🇮🇪</option><option value="en-IN">
+            English-India [en-IN] 🇮🇳</option><option value="en-NZ">
+            English-New Zealand [en-NZ] 🇳🇿</option><option value="en-PH">
+            English-Philippines [en-PH] 🇵🇭</option><option value="en-PK">
+            English-Pakistan [en-PK] 🇵🇰</option><option value="en-SG">
+            English-Singapore [en-SG] 🇸🇬</option><option value="en-US">
+            English-United States [en-US] 🇺🇸</option><option value="en-ZA">
+            English-South Africa [en-ZA] 🇿🇦</option><option value="es">
+            Español [es] 🌐</option><option value="es-AR">
+            Español-Argentina [es-AR] 🇦🇷</option><option value="es-CL">
+            Español-Chile [es-CL] 🇨🇱</option><option value="es-CO">
+            Español-Colombia [es-CO] 🇨🇴</option><option value="es-ES">
+            Español-España [es-ES] 🇪🇸</option><option value="es-MX">
+            Español-México [es-MX] 🇲🇽</option><option value="es-PE">
+            Español-Perú [es-PE] 🇵🇪</option><option value="eu">
+            Euskara [eu] 🌐</option><option value="fr">
+            Français [fr] 🌐</option><option value="fr-BE">
+            Français-Belgique [fr-BE] 🇧🇪</option><option value="fr-CA">
+            Français-Canada [fr-CA] 🇨🇦</option><option value="fr-CH">
+            Français-Suisse [fr-CH] 🇨🇭</option><option value="fr-FR">
+            Français-France [fr-FR] 🇫🇷</option><option value="ga">
+            Gaeilge [ga] 🌐</option><option value="gl">
+            Galego [gl] 🌐</option><option value="gd">
+            Gàidhlig [gd] 🌐</option><option value="hr">
+            Hrvatski [hr] 🌐</option><option value="id">
+            Indonesia [id] 🌐</option><option value="id-ID">
+            Indonesia-Indonesia [id-ID] 🇮🇩</option><option value="it">
+            Italiano [it] 🌐</option><option value="it-CH">
+            Italiano-Svizzera [it-CH] 🇨🇭</option><option value="it-IT">
+            Italiano-Italia [it-IT] 🇮🇹</option><option value="lv">
+            Latviešu [lv] 🌐</option><option value="lt">
+            Lietuvių [lt] 🌐</option><option value="hu">
+            Magyar [hu] 🌐</option><option value="hu-HU">
+            Magyar-Magyarország [hu-HU] 🇭🇺</option><option value="nl">
+            Nederlands [nl] 🌐</option><option value="nl-BE">
+            Nederlands-België [nl-BE] 🇧🇪</option><option value="nl-NL">
+            Nederlands-Nederland [nl-NL] 🇳🇱</option><option value="nb">
+            Norsk Bokmål [nb] 🌐</option><option value="nb-NO">
+            Norsk Bokmål-Norge [nb-NO] 🇳🇴</option><option value="pl">
+            Polski [pl] 🌐</option><option value="pl-PL">
+            Polski-Polska [pl-PL] 🇵🇱</option><option value="pt">
+            Português [pt] 🌐</option><option value="pt-BR">
+            Português-Brasil [pt-BR] 🇧🇷</option><option value="pt-PT">
+            Português-Portugal [pt-PT] 🇵🇹</option><option value="ro">
+            Română [ro] 🌐</option><option value="ro-RO">
+            Română-România [ro-RO] 🇷🇴</option><option value="sq">
+            Shqip [sq] 🌐</option><option value="sk">
+            Slovenčina [sk] 🌐</option><option value="sl">
+            Slovenščina [sl] 🌐</option><option value="fi">
+            Suomi [fi] 🌐</option><option value="fi-FI">
+            Suomi-Suomi [fi-FI] 🇫🇮</option><option value="sv">
+            Svenska [sv] 🌐</option><option value="sv-SE">
+            Svenska-Sverige [sv-SE] 🇸🇪</option><option value="vi">
+            Tiếng Việt [vi] 🌐</option><option value="vi-VN">
+            Tiếng Việt-Việt Nam [vi-VN] 🇻🇳</option><option value="tr">
+            Türkçe [tr] 🌐</option><option value="tr-TR">
+            Türkçe-Türkiye [tr-TR] 🇹🇷</option><option value="is">
+            Íslenska [is] 🌐</option><option value="cs">
+            Čeština [cs] 🌐</option><option value="cs-CZ">
+            Čeština-Česko [cs-CZ] 🇨🇿</option><option value="el">
+            Ελληνικά [el] 🌐</option><option value="el-GR">
+            Ελληνικά-Ελλάδα [el-GR] 🇬🇷</option><option value="be">
+            Беларуская [be] 🌐</option><option value="bg">
+            Български [bg] 🌐</option><option value="bg-BG">
+            Български-България [bg-BG] 🇧🇬</option><option value="ru">
+            Русский [ru] 🌐</option><option value="ru-RU">
+            Русский-Россия [ru-RU] 🇷🇺</option><option value="uk">
+            Українська [uk] 🌐</option><option value="he">
+            עברית [he] 🇮🇱</option><option value="ur">
+            اردو [ur] 🌐</option><option value="ar">
+            العربية [ar] 🌐</option><option value="ar-SA">
+            العربية-المملكة العربية السعودية [ar-SA] 🇸🇦</option><option value="fa">
+            فارسی [fa] 🌐</option><option value="mr">
+            मराठी [mr] 🌐</option><option value="hi">
+            हिन्दी [hi] 🌐</option><option value="ta">
+            தமிழ் [ta] 🌐</option><option value="te">
+            తెలుగు [te] 🌐</option><option value="kn">
+            ಕನ್ನಡ [kn] 🌐</option><option value="ml">
+            മലയാളം [ml] 🌐</option><option value="th">
+            ไทย [th] 🌐</option><option value="th-TH">
+            ไทย-ไทย [th-TH] 🇹🇭</option><option value="zh">
+            中文 [zh] 🌐</option><option value="zh-CN">
+            中文-中国 [zh-CN] 🇨🇳</option><option value="zh-HK">
+            中文-中國香港特別行政區 [zh-HK] 🇭🇰</option><option value="zh-TW">
+            中文-台灣 [zh-TW] 🇹🇼</option><option value="ja">
+            日本語 [ja] 🌐</option><option value="ja-JP">
+            日本語-日本 [ja-JP] 🇯🇵</option><option value="ko">
+            한국어 [ko] 🌐</option><option value="ko-KR">
+            한국어-대한민국 [ko-KR] 🇰🇷</option></select><select name="time_range" id="time_range" class="time_range" aria-label="Time range"><option id="time-range-anytime" value="" selected>Anytime</option><option id="time-range-day" value="day" >Last day</option><option id="time-range-week" value="week" >Last week</option><option id="time-range-month" value="month" >Last month</option><option id="time-range-year" value="year" >Last year</option></select><select  name="safesearch" id="safesearch" class="safesearch" aria-label="SafeSearch">
+    <option value="2"  aria-label="Strict">SafeSearch: Strict</option>
+    <option value="1"  aria-label="Moderate">SafeSearch: Moderate</option>
+    <option value="0" selected="selected" aria-label="None">SafeSearch: None</option>
+</select>  </div>
+  <input type="hidden" name="theme" value="simple" >
+</form>
+
+<div id="results" class="only_template_default">
+    <div id="sidebar"><div id="infoboxes">
+            <details open class="sidebar-collapsible">
+              <summary class="title">Info</summary><aside class="infobox" aria-label="Bitcoin Price Passes $50,000: What to Watch as the Stock Market Opens Today">
+  <h2 class="title"><bdi>Bitcoin Price Passes $50,000: What to Watch as the Stock Market Opens Today</bdi></h2><p><bdi>Wall Street Journal article (October 5, 2021)</bdi></p><div class="attributes"><dl>
+          <dt><bdi>Author :</bdi></dt><dd><bdi>Caitlin Ostroff</bdi></dd></dl><dl>
+          <dt><bdi>Publication date :</bdi></dt><dd><bdi>Tuesday, October 5, 2021</bdi></dd></dl></div><div class="urls">
+      <ul><li class="url"><bdi><a href="http://www.wikidata.org/entity/Q115176722"rel="noreferrer">Wikidata</a></bdi></li></ul>
+    </div></aside></details>
+          </div><div id="suggestions" role="complementary" aria-labelledby="suggestions-title">
+  <details class="sidebar-collapsible">
+    <summary class="title" id="suggestions-title">Suggestions</summary>
+    <ul class="wrapper"><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="1 bitcoin price in dollar"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="1 bitcoin price in dollar">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="ethereum price"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="ethereum price">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin gdzie kupić"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin gdzie kupić">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="BTC/EUR"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="BTC/EUR">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin wykres 10 lat"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin wykres 10 lat">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="BTC live"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="BTC live">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Kurs Bitcoin online"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Kurs Bitcoin online">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin prognoza"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin prognoza">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin historia"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin historia">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Giełda Bitcoin"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Giełda Bitcoin">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price usd"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price usd">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="BTC tracker"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="BTC tracker">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price history"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price history">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price reddit"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price reddit">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin cena"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin cena">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price in 2010"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price in 2010">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price prediction"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price prediction">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin PLN"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin PLN">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin CFD"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin CFD">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Kupno Bitcoin"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Kupno Bitcoin">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Bitcoin wzrost"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Bitcoin wzrost">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="Przelicznik Bitcoin"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="Przelicznik Bitcoin">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="1 Bitcoin to PLN"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="1 Bitcoin to PLN">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="BTC/USD"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="BTC/USD">
+      </form></li><li><form method="POST" action="/search">
+          <input type="hidden" name="q" value="bitcoin price live"><input type="hidden" name="category_general" value="1"><input type="hidden" name="language" value="auto">
+          <input type="hidden" name="time_range" value="">
+          <input type="hidden" name="safesearch" value="0">
+          <input type="hidden" name="theme" value="simple"><input type="submit" class="suggestion" role="link" value="bitcoin price live">
+      </form></li></ul>
+  </details>
+</div><div id="engines_msg">
+  <details class="sidebar-collapsible">
+    <summary class="title" id="engines_msg-title">Response time: 1.1 seconds</summary>
+    <table class="engine-stats" id="engines_msg-table"><tr>
+        <td class="engine-name"><a href="/stats?engine=wikidata">wikidata</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">1.1</div>
+          <div class="bar-chart-graph" aria-labelledby="wikidata_time" aria-hidden="true">
+            <div class="bar-chart-bar bar100"></div>
+          </div>
+        </td>
+      </tr><tr>
+        <td class="engine-name"><a href="/stats?engine=duckduckgo">duckduckgo</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">1.0</div>
+          <div class="bar-chart-graph" aria-labelledby="duckduckgo_time" aria-hidden="true">
+            <div class="bar-chart-bar bar88"></div>
+          </div>
+        </td>
+      </tr><tr>
+        <td class="engine-name"><a href="/stats?engine=google">google</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">0.9</div>
+          <div class="bar-chart-graph" aria-labelledby="google_time" aria-hidden="true">
+            <div class="bar-chart-bar bar79"></div>
+          </div>
+        </td>
+      </tr><tr>
+        <td class="engine-name"><a href="/stats?engine=brave">brave</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">0.6</div>
+          <div class="bar-chart-graph" aria-labelledby="brave_time" aria-hidden="true">
+            <div class="bar-chart-bar bar51"></div>
+          </div>
+        </td>
+      </tr><tr>
+        <td class="engine-name"><a href="/stats?engine=wikipedia">wikipedia</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">0.5</div>
+          <div class="bar-chart-graph" aria-labelledby="wikipedia_time" aria-hidden="true">
+            <div class="bar-chart-bar bar46"></div>
+          </div>
+        </td>
+      </tr><tr>
+        <td class="engine-name"><a href="/stats?engine=startpage">startpage</a></td>
+        <td class="response-time">
+          <div class="bar-chart-value">0.5</div>
+          <div class="bar-chart-graph" aria-labelledby="startpage_time" aria-hidden="true">
+            <div class="bar-chart-bar bar44"></div>
+          </div>
+        </td>
+      </tr></table>
+  </details>
+</div><div id="search_url" role="complementary" aria-labelledby="search_url-title">
+  <details class="sidebar-collapsible">
+    <summary class="title" id="search_url-title">Search URL</summary>
+    <button id="copy_url" type="button" class="button" data-copied-text="Copied">Copy</button>
+    <div class="selectable_url">
+      <pre>http://57.128.250.34:8080/search?q=bitcoin%20price&amp;language=auto&amp;time_range=&amp;safesearch=0&amp;categories=general</pre>
+    </div>
+  </details>
+</div><div id="sidebar-end-collapsible"></div>
+    </div><div id="urls" role="main">
+
+<article class="result result-default category-general"><a href="https://coinmarketcap.com/currencies/bitcoin/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://coinmarketcap.com</span></span><span class="url_o2"><span class="url_i2"> › currencies › bitcoin</span></span>  </div></a><a href="https://coinmarketcap.com/currencies/bitcoin/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/BYEHCjfm3Hn3GQFGJ0WzgJT-73KRYU1wRnD2tHK_BMQ/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9zMi5j/b2lubWFya2V0Y2Fw/LmNvbS9zdGF0aWMv/Y2xvdWQvaW1nL3Nw/bGFzaF82MDB4MzE1/XzEucG5nP189MWI4/ZGU5Mg" title="Bitcoin price today, BTC to USD live price, marketcap and chart | CoinMarketCap" loading="lazy"></a><h3><a href="https://coinmarketcap.com/currencies/bitcoin/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> today, BTC to USD live <span class="highlight">price</span>, marketcap and chart | CoinMarketCap</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The live <span class="highlight">Bitcoin</span> <span class="highlight">price</span> today is $74,097.44 USD with a 24-hour trading volume of $68,015,938,377.39 USD. We update our BTC to USD <span class="highlight">price</span> in real-time.
+  </p><div class="engines">
+<span>google</span><span>startpage</span><span>brave</span><span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://coinmarketcap.com/currencies/bitcoin/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.binance.com/en/price/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.binance.com</span></span><span class="url_o2"><span class="url_i2"> › en › price › bitcoin</span></span>  </div></a><a href="https://www.binance.com/en/price/bitcoin" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/oCj3fjJImmeeJFHzDvP7VwkOQDff30b2UCn6LB_-03w/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9iaW4u/Ym5ic3RhdGljLmNv/bS9zdGF0aWMvaW1h/Z2VzL3Nlby9jb2lu/LXByaWNlL3Zlcmlm/eS1hY2NvdW50LXRo/dW1ibmFpbC0xeDEu/cG5n" title="Bitcoin Price Today | BTC to USD Live Price, Market Cap &amp; Chart" loading="lazy"></a><h3><a href="https://www.binance.com/en/price/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Today | BTC to USD Live <span class="highlight">Price</span>, Market Cap &amp; Chart</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Live <span class="highlight">price</span> of <span class="highlight">Bitcoin</span> is $96,262.14 with a market cap of $1,908.19B USD. Discover current <span class="highlight">price</span>, trading volume, chart history, and more. Published February 22, 2023
+  </p><div class="engines">
+<span>google</span><span>startpage</span><span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.binance.com/en/price/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.coindesk.com/price/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.coindesk.com</span></span><span class="url_o2"><span class="url_i2"> › price › bitcoin</span></span>  </div></a><a href="https://www.coindesk.com/price/bitcoin" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/ZMqNHvTXhQ5qHwN1ZO9pxCg8SIKTLflkf3Vk4c2-37Y/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9yZXNv/dXJjZXMuY3J5cHRv/Y29tcGFyZS5jb20v/YXNzZXQtbWFuYWdl/bWVudC8xLzE3NDM2/OTg3NTUxNDAucG5n" title="Bitcoin price today, BTC to USD live price, marketcap and chart | CoinDesk" loading="lazy"></a><h3><a href="https://www.coindesk.com/price/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> today, BTC to USD live <span class="highlight">price</span>, marketcap and chart | CoinDesk</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Live <span class="highlight">Bitcoin</span> <span class="highlight">price</span> movements from all markets and BTC market cap, use our charts and see when there is an opportunity to buy or sell.
+  </p><div class="engines">
+<span>duckduckgo</span><span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.coindesk.com/price/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://finance.yahoo.com/quote/BTC-USD/history/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://finance.yahoo.com</span></span><span class="url_o2"><span class="url_i2"> › quote › BTC-USD › history</span></span>  </div></a><a href="https://finance.yahoo.com/quote/BTC-USD/history/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/RdadiBRQ63VojjkM7xikCS4hjSlJWDFhsyS2z7cs0bM/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9waW5o/b2xlLmZpbmFuY2Uu/eWFob28uY29tL2No/YXJ0L0JUQy1VU0Qv/X19zY3JlZW5zaG90" title="Bitcoin USD (BTC-USD) Price History &amp; Historical Data - Yahoo Finance" loading="lazy"></a><h3><a href="https://finance.yahoo.com/quote/BTC-USD/history/" rel="noreferrer"><span class="highlight">Bitcoin</span> USD (BTC-USD) <span class="highlight">Price</span> History &amp; Historical Data - Yahoo Finance</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Discover historical prices of <span class="highlight">Bitcoin</span> USD (BTC-USD) on Yahoo Finance. View daily, weekly or monthly formats.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://finance.yahoo.com/quote/BTC-USD/history/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://ts2.tech/en/bitcoin-price-today-slips-toward-73000-as-fed-chair-fight-etf-flows-weigh-on-crypto/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://ts2.tech</span></span><span class="url_o2"><span class="url_i2"> › en › bitcoin-price-today-slips-toward-73000-as-fed-chair-fight-etf-flows-weigh-on-crypto</span></span>  </div></a><a href="https://ts2.tech/en/bitcoin-price-today-slips-toward-73000-as-fed-chair-fight-etf-flows-weigh-on-crypto/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/2Om5UhhmLylq9OyRSE2rsbqUcb-EkQuCZbG6iyBjdNQ/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly90czIu/dGVjaC93cC1jb250/ZW50L3VwbG9hZHMv/MjAyNi8wMi9iaXRj/b2luLXByaWNlLXRv/ZGF5LXNsaXBzLXRv/d2FyZC03MzAwMC1h/cy1mZWQtY2hhaXIt/ZmlnaHQtZXRmLWZs/b3dzLXdlaWdoLW9u/LWNyeXB0by1mZWF0/dXJlZC5qcGc" title="Bitcoin price today slips toward $73,000 as Fed chair fight, ETF flows weigh on crypto" loading="lazy"></a><h3><a href="https://ts2.tech/en/bitcoin-price-today-slips-toward-73000-as-fed-chair-fight-etf-flows-weigh-on-crypto/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> today slips toward $73,000 as Fed chair fight, ETF flows weigh on crypto</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> <span class="highlight">price</span> today slips toward $73,000 as Fed chair fight, ETF flows weigh on crypto - TechStock²
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://ts2.tech/en/bitcoin-price-today-slips-toward-73000-as-fed-chair-fight-etf-flows-weigh-on-crypto/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://finance.yahoo.com/quote/BTC-USD/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://finance.yahoo.com</span></span><span class="url_o2"><span class="url_i2"> › quote › BTC-USD</span></span>  </div></a><h3><a href="https://finance.yahoo.com/quote/BTC-USD/" rel="noreferrer"><span class="highlight">Bitcoin</span> BTC (BTC-USD) Live <span class="highlight">Price</span>, News, Chart &amp; <span class="highlight">Price</span> History - Yahoo Finance</a></h3><time class="published_date" datetime="" >2025-12-19 00:00:00</time><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> has a current supply of 19,982,656. The last known <span class="highlight">price</span> of <span class="highlight">Bitcoin</span> is 78,270.02895442 USD and is up 0.53 over the last 24 hours. It is currently trading on 12553 active market(s) with $52,106,943,446.86 traded over the last 24 hours.
+  </p><div class="engines">
+<span>google</span><span>startpage</span><span>brave</span><span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://finance.yahoo.com/quote/BTC-USD/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://pl.tradingview.com/symbols/BTCUSD/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://pl.tradingview.com</span></span><span class="url_o2"><span class="url_i2"> › symbols › BTCUSD</span></span>  </div></a><h3><a href="https://pl.tradingview.com/symbols/BTCUSD/" rel="noreferrer">BTC USD — Cena i Wykres Bitcoina - TradingView</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Zobacz wykres Bitcoina do Dolara, obserwuj ceny BTCUSD w czasie rzeczywistym i uzyskaj historię cen bitcoina. Sprawdź analizę techniczną i prognozy dla ...
+  </p><div class="engines">
+<span>google</span><span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://pl.tradingview.com/symbols/BTCUSD/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.tradingview.com/symbols/BTCUSD/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.tradingview.com</span></span><span class="url_o2"><span class="url_i2"> › symbols › BTCUSD</span></span>  </div></a><h3><a href="https://www.tradingview.com/symbols/BTCUSD/" rel="noreferrer">BTC USD — <span class="highlight">Bitcoin</span> <span class="highlight">Price</span> and Chart — TradingView</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The safest choice when buying BTC is to go to a well-known crypto exchange. Some of the popular names are Binance, Coinbase, Kraken. But you&#x27;ll have to find a reliable broker and create an account first. You can trade BTC right from TradingView charts — just choose a broker and connect to your account.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.tradingview.com/symbols/BTCUSD/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://crypto.com/en/price/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://crypto.com</span></span><span class="url_o2"><span class="url_i2"> › en › price › bitcoin</span></span>  </div></a><h3><a href="https://crypto.com/en/price/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span> Today: BTC Live <span class="highlight">Price</span>, Charts, News - Crypto.com</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span>&#x27;s <span class="highlight">price</span> today is $73,324.61, with a 24-hour trading volume of $71.3B. BTC is -4.43% in the last 24 hours. It is currently -18.89% from its 7-day all- ...
+  </p><div class="engines">
+<span>google</span><span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://crypto.com/en/price/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.investing.com/crypto/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.investing.com</span></span><span class="url_o2"><span class="url_i2"> › crypto › bitcoin</span></span>  </div></a><h3><a href="https://www.investing.com/crypto/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> (BTC) | <span class="highlight">Bitcoin</span> Value - Investing.com</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Live <span class="highlight">Bitcoin</span> <span class="highlight">price</span> (BTC) including charts, trades and more. Create real-time notifications and alerts to follow any changes in the <span class="highlight">Bitcoin</span> value.
+  </p><div class="engines">
+<span>google</span><span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.investing.com/crypto/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.kraken.com/prices/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.kraken.com</span></span><span class="url_o2"><span class="url_i2"> › prices › bitcoin</span></span>  </div></a><h3><a href="https://www.kraken.com/prices/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> today - BTC <span class="highlight">price</span> chart &amp; live trends - Kraken</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> <span class="highlight">price</span> today is $76,060.00. In the last 24 hours <span class="highlight">Bitcoin</span>&#x27;s <span class="highlight">price</span> moved -2.74%. The current BTC to USD conversion rate is $76,060.00 per BTC. The ...
+  </p><div class="engines">
+<span>google</span><span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.kraken.com/prices/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://old.reddit.com/r/CryptoCurrency/comments/1qs9a5y/bitcoin_price_just_fell_below_80k_for_the_first/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://old.reddit.com</span></span><span class="url_o2"><span class="url_i2"> › r › CryptoCurrency › comments › 1qs9a5y › bitcoin_price_just_fell_below_80k_for_the_first</span></span>  </div></a><h3><a href="https://old.reddit.com/r/CryptoCurrency/comments/1qs9a5y/bitcoin_price_just_fell_below_80k_for_the_first/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> just fell below 80k for the first time since the April 2025 Tariff Scare. (Low of $78,159 so far) : CryptoCurrency</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    More on old.reddit.com
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://old.reddit.com/r/CryptoCurrency/comments/1qs9a5y/bitcoin_price_just_fell_below_80k_for_the_first/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.coinbase.com/price/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.coinbase.com</span></span><span class="url_o2"><span class="url_i2"> › price › bitcoin</span></span>  </div></a><h3><a href="https://www.coinbase.com/price/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span>, BTC <span class="highlight">Price</span>, Live Charts, and Marketcap: <span class="highlight">bitcoin</span> <span class="highlight">price</span> ...</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span> USD Today is $78,443.41. News, predictions, charts, market cap, buy, sell, convert, and invest on the most trusted platform for crypto.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.coinbase.com/price/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.revolut.com/en-PL/crypto/price/btc/?amount-to=1" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.revolut.com</span></span><span class="url_o2"><span class="url_i2"> › en-PL › crypto › price › btc</span></span>  </div></a><h3><a href="https://www.revolut.com/en-PL/crypto/price/btc/?amount-to=1" rel="noreferrer"><span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span> Today | BTC Live <span class="highlight">Price</span> Charts | Revolut Poland</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The <span class="highlight">price</span> of <span class="highlight">Bitcoin</span> has decreased today. 1 BTC currently costs zł 271,676.69, which represents a change of -0.15% in the last hour and a change of -2.89% in ...
+  </p><div class="engines">
+<span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.revolut.com/en-PL/crypto/price/btc/?amount-to=1" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.forbes.com/sites/digital-assets/2026/02/04/binance-founder-suddenly-flips-as-bitcoin-price-plummet-sparks-crash-fears/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.forbes.com</span></span><span class="url_o2"><span class="url_i2"> › sites › digital-assets › 2026 › 02 › 04 › binance-founder-suddenly-flips-as-bitcoin-price-plummet-sparks-crash-fears</span></span>  </div></a><h3><a href="https://www.forbes.com/sites/digital-assets/2026/02/04/binance-founder-suddenly-flips-as-bitcoin-price-plummet-sparks-crash-fears/" rel="noreferrer">Serious $50,000 <span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Warning Ignites Crypto Crash Fears</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The <span class="highlight">bitcoin</span> <span class="highlight">price</span> has plummeted under the closely-watched $80,000 per <span class="highlight">bitcoin</span> level, sparking fears that a full-blown <span class="highlight">bitcoin</span> and crypto crash could be looming.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.forbes.com/sites/digital-assets/2026/02/04/binance-founder-suddenly-flips-as-bitcoin-price-plummet-sparks-crash-fears/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.revolut.com/crypto/price/btc/?amount-to=1" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.revolut.com</span></span><span class="url_o2"><span class="url_i2"> › crypto › price › btc</span></span>  </div></a><h3><a href="https://www.revolut.com/crypto/price/btc/?amount-to=1" rel="noreferrer">1 <span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span> Today | BTC Live <span class="highlight">Price</span> Charts</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The <span class="highlight">price</span> of <span class="highlight">Bitcoin</span> has decreased today. 1 BTC currently costs £55,654.84, which represents a change of -0.43% in the last hour and a change of -3.12% in the ...
+  </p><div class="engines">
+<span>google</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.revolut.com/crypto/price/btc/?amount-to=1" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.ccn.com/news/crypto/bitcoin-price-falling-to-30000-influencer-predicts-downside-global-market-crash/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.ccn.com</span></span><span class="url_o2"><span class="url_i2"> › news › crypto › bitcoin-price-falling-to-30000-influencer-predicts-downside-global-market-crash</span></span>  </div></a><h3><a href="https://www.ccn.com/news/crypto/bitcoin-price-falling-to-30000-influencer-predicts-downside-global-market-crash/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Falling To $30,000? Influencer Predicts Collapse After ...</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span>&#x27;s <span class="highlight">price</span> faces mounting downside risk as analysts and crypto influencers warn of deeper losses following a global market crash.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.ccn.com/news/crypto/bitcoin-price-falling-to-30000-influencer-predicts-downside-global-market-crash/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://bitflyer.com/en-us/bitcoin-chart" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://bitflyer.com</span></span><span class="url_o2"><span class="url_i2"> › en-us › bitcoin-chart</span></span>  </div></a><h3><a href="https://bitflyer.com/en-us/bitcoin-chart" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Chart (BTC/USD) | <span class="highlight">Bitcoin</span> Value | bitFlyer USA</a></h3><time class="published_date" datetime="" >2025-11-23 00:00:00</time><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Check out the current <span class="highlight">Bitcoin</span> (BTC) <span class="highlight">price</span>, market cap, historical volatility, and buy <span class="highlight">Bitcoin</span> on bitFlyer today with as little as $1!
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://bitflyer.com/en-us/bitcoin-chart" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://zondacrypto.com/pl/kurs-walut/kurs-bitcoin-pln" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://zondacrypto.com</span></span><span class="url_o2"><span class="url_i2"> › pl › kurs-walut › kurs-bitcoin-pln</span></span>  </div></a><h3><a href="https://zondacrypto.com/pl/kurs-walut/kurs-bitcoin-pln" rel="noreferrer">BTC/PLN - Kurs <span class="highlight">Bitcoin</span> - Notowania, wykres</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Price</span> name: Cena <span class="highlight">Bitcoin</span> (BTC). Current <span class="highlight">price</span>: PLN 262,000.03. <span class="highlight">Price</span> change ... <span class="highlight">Bitcoin</span> podzielił się również na dwa instrumenty handlowe: <span class="highlight">bitcoin</span> classic (BTC) i ...
+  </p><div class="engines">
+<span>google</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://zondacrypto.com/pl/kurs-walut/kurs-bitcoin-pln" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.msn.com/en-us/money/markets/bitcoin-is-coming-off-a-brutal-week-heres-whats-happening/ar-AA1Vu5q3" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.msn.com</span></span><span class="url_o2"><span class="url_i2"> › en-us › money › markets › bitcoin-is-coming-off-a-brutal-week-heres-whats-happening › ar-AA1Vu5q3</span></span>  </div></a><h3><a href="https://www.msn.com/en-us/money/markets/bitcoin-is-coming-off-a-brutal-week-heres-whats-happening/ar-AA1Vu5q3" rel="noreferrer"><span class="highlight">Bitcoin</span> is coming off a brutal week. Here&#x27;s what&#x27;s happening - MSN</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Could <span class="highlight">Bitcoin</span> fall further? Crypto market participants told CNBC last month that <span class="highlight">bitcoin</span> volatility was to be expected this year, with forecasts for the <span class="highlight">price</span> veering from $75,000 to above $200,000.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.msn.com/en-us/money/markets/bitcoin-is-coming-off-a-brutal-week-heres-whats-happening/ar-AA1Vu5q3" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://crypto.com/us/price/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://crypto.com</span></span><span class="url_o2"><span class="url_i2"> › us › price › bitcoin</span></span>  </div></a><h3><a href="https://crypto.com/us/price/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span> Today: BTC Live <span class="highlight">Price</span>, Charts, News - Crypto.com ...</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> (BTC) <span class="highlight">price</span> today is $78576.31. See BTC live <span class="highlight">price</span> charts, market cap, latest news, trading volume and more key market metrics.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://crypto.com/us/price/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://bitflyer.com/en-eu/bitcoin-chart" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://bitflyer.com</span></span><span class="url_o2"><span class="url_i2"> › en-eu › bitcoin-chart</span></span>  </div></a><h3><a href="https://bitflyer.com/en-eu/bitcoin-chart" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Chart in Euros (BTC/EUR) | bitFlyer Europe</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Chart (BTC/EUR). 63,834.37*EUR. +1.94 %. 1 Hour 1 Day 1 Week 1 Month 1 Year. 62,991.63. 67,038.87. 22:00. 04 ...
+  </p><div class="engines">
+<span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://bitflyer.com/en-eu/bitcoin-chart" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.google.com/finance/quote/BTC-usd" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.google.com</span></span><span class="url_o2"><span class="url_i2"> › finance › quote › BTC-usd</span></span>  </div></a><h3><a href="https://www.google.com/finance/quote/BTC-usd" rel="noreferrer"><span class="highlight">Bitcoin</span> (BTC) <span class="highlight">Price</span>, Real-time Quote &amp; News - Google Finance</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Get the latest <span class="highlight">Bitcoin</span> (BTC / USD) real-time quote, historical performance, charts, and other cryptocurrency information to help you make more informed trading and investment decisions.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.google.com/finance/quote/BTC-usd" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://pluang.com/en/asset/crypto/BTC/10000" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://pluang.com</span></span><span class="url_o2"><span class="url_i2"> › en › asset › crypto › BTC › 10000</span></span>  </div></a><h3><a href="https://pluang.com/en/asset/crypto/BTC/10000" rel="noreferrer">Buy &amp; Sell <span class="highlight">Bitcoin</span> (BTC) – <span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Today - Pluang</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Get the latest <span class="highlight">Bitcoin</span> (BTC) <span class="highlight">price</span> today in IDR and USD, check 1 BTC value, track BTC to IDR and BTC/USD rates, and stay updated with real-time market trends ...
+  </p><div class="engines">
+<span>startpage</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://pluang.com/en/asset/crypto/BTC/10000" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.etoro.com/markets/btc" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.etoro.com</span></span><span class="url_o2"><span class="url_i2"> › markets › btc</span></span>  </div></a><h3><a href="https://www.etoro.com/markets/btc" rel="noreferrer">Live <span class="highlight">Bitcoin</span> <span class="highlight">Price</span>, Charts &amp; News - BTC Today</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The <span class="highlight">Bitcoin</span> <span class="highlight">price</span> today is ‎$‎72,736.00, a ‎-4.12‎% change in the last 24 hours and ‎-18.45‎% in the past week. <span class="highlight">Bitcoin</span>&#x27;s 24-hour trading volume is 72.19B and ...
+  </p><div class="engines">
+<span>google</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.etoro.com/markets/btc" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.forbes.com/sites/digital-assets/2026/01/31/worst-case-scenario-crypto-suddenly-braced-for-massive-1-trillion-bitcoin-price-crash/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.forbes.com</span></span><span class="url_o2"><span class="url_i2"> › sites › digital-assets › 2026 › 01 › 31 › worst-case-scenario-crypto-suddenly-braced-for-massive-1-trillion-bitcoin-price-crash</span></span>  </div></a><h3><a href="https://www.forbes.com/sites/digital-assets/2026/01/31/worst-case-scenario-crypto-suddenly-braced-for-massive-1-trillion-bitcoin-price-crash/" rel="noreferrer">&#x27;Worst-Case Scenario&#x27;—<span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Crash Fears Suddenly Surge After ...</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The <span class="highlight">bitcoin</span> <span class="highlight">price</span>, which has plummeted to nearly $80,000 per <span class="highlight">bitcoin</span> from its peak of $126,000 in October, is battling to save its reputation as digital gold.
+  </p><div class="engines">
+<span>duckduckgo</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.forbes.com/sites/digital-assets/2026/01/31/worst-case-scenario-crypto-suddenly-braced-for-massive-1-trillion-bitcoin-price-crash/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.msn.com/en-us/money/markets/bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/ar-AA1VFnwj" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.msn.com</span></span><span class="url_o2"><span class="url_i2"> › en-us › money › markets › bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m › ar-AA1VFnwj</span></span>  </div></a><h3><a href="https://www.msn.com/en-us/money/markets/bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/ar-AA1VFnwj" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> sets new 15-month low under $73K as crypto liquidates $800M</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    We cannot provide a description for this page right now
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.msn.com/en-us/money/markets/bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/ar-AA1VFnwj" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://en.wikipedia.org/wiki/Bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://en.wikipedia.org</span></span><span class="url_o2"><span class="url_i2"> › wiki › Bitcoin</span></span>  </div></a><h3><a href="https://en.wikipedia.org/wiki/Bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span></a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content empty_element">
+    This site did not provide any description.
+  </p>
+<div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://en.wikipedia.org/wiki/Bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.businessinsider.com/bitcoin-price-crash-bear-market-outlook-strategy-trust-crypto-selloff-2026-2" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.businessinsider.com</span></span><span class="url_o2"><span class="url_i2"> › bitcoin-price-crash-bear-market-outlook-strategy-trust-crypto-selloff-2026-2</span></span>  </div></a><a href="https://www.businessinsider.com/bitcoin-price-crash-bear-market-outlook-strategy-trust-crypto-selloff-2026-2" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/K3uBs9v8XQ-LJ7a0YHuoKaWFNYgvfzmy0C1Z4Nt9goo/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLmlu/c2lkZXIuY29tLzY5/ODI3OTFmZDNjN2Zh/ZWYwZWNkOGVlNT93/aWR0aD04NzImZm9y/bWF0PWpwZWc" title="Bitcoin&#39;s Price Has Plummeted. Now Strategy Is Key to the Crypto&#39;s Future. - Business Insider" loading="lazy"></a><h3><a href="https://www.businessinsider.com/bitcoin-price-crash-bear-market-outlook-strategy-trust-crypto-selloff-2026-2" rel="noreferrer"><span class="highlight">Bitcoin</span>&#x27;s <span class="highlight">Price</span> Has Plummeted. Now Strategy Is Key to the Crypto&#x27;s Future. - Business Insider</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The level to watch is $76,000. That&#x27;s the average that Strategy has paid for its tokens. If the <span class="highlight">price</span> of <span class="highlight">bitcoin</span> has fallen below it, that means the firm is sitting on paper losses.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.businessinsider.com/bitcoin-price-crash-bear-market-outlook-strategy-trust-crypto-selloff-2026-2" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://bitcoinmagazine.com/markets/bhutan-continues-bitcoin-sales" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://bitcoinmagazine.com</span></span><span class="url_o2"><span class="url_i2"> › markets › bhutan-continues-bitcoin-sales</span></span>  </div></a><a href="https://bitcoinmagazine.com/markets/bhutan-continues-bitcoin-sales" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/acLJFhNe1MRaHgW3HywpBA2f8qsXMmuYPwegN4Oy1Ow/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9iaXRj/b2lubWFnYXppbmUu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI1LzEyL0JodXRh/bi1QbGVkZ2VzLVVw/LXRvLTEwMDAwLUJp/dGNvaW4tdG8tQnVp/bGQtTWluZGZ1bG5l/c3MtTWVnYS1DaXR5/LmpwZw" title="Bhutan Continues Bitcoin Selling As Price Hits $72,000" loading="lazy"></a><h3><a href="https://bitcoinmagazine.com/markets/bhutan-continues-bitcoin-sales" rel="noreferrer">Bhutan Continues <span class="highlight">Bitcoin</span> Selling As <span class="highlight">Price</span> Hits $72,000</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">BITCOIN</span> <span class="highlight">PRICE</span> · TOOLS · <span class="highlight">BITCOIN</span> PROFIT CALCULATOR · <span class="highlight">BITCOIN</span> CAGR CALCULATOR · <span class="highlight">BITCOIN</span> MINING CALCULATOR · SATOSHI TO USD CALCULATOR · <span class="highlight">BITCOIN</span> ETF TRACKER · STORE · PREDICT <span class="highlight">BITCOIN</span> · HomeMARKETSBhutan Continues Consistent BTC Selling as <span class="highlight">Bitcoin</span> <span class="highlight">Price</span> Tanks to $72,000 ·
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://bitcoinmagazine.com/markets/bhutan-continues-bitcoin-sales" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://decrypt.co/356931/bitcoin-mining-stocks-plunge-btc-price-drops-20-percent" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://decrypt.co</span></span><span class="url_o2"><span class="url_i2"> › 356931 › bitcoin-mining-stocks-plunge-btc-price-drops-20-percent</span></span>  </div></a><a href="https://decrypt.co/356931/bitcoin-mining-stocks-plunge-btc-price-drops-20-percent" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/CNOzS3EpDJww-uRw-HfB4jyS-1d8k0XQAG4CGt2sGc4/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9jZG4u/ZGVjcnlwdC5jby9y/ZXNpemUvMTAyNC9o/ZWlnaHQvNTEyL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI1LzA5/L2JpdGNvaW4tbWlu/ZXJzLWRlY3J5cHQt/c3R5bGUtMDEtZ0lE/XzcuanBn" title="Bitcoin Mining Stocks Dive as BTC Price Drops 20% in a Week - Decrypt" loading="lazy"></a><h3><a href="https://decrypt.co/356931/bitcoin-mining-stocks-plunge-btc-price-drops-20-percent" rel="noreferrer"><span class="highlight">Bitcoin</span> Mining Stocks Dive as BTC <span class="highlight">Price</span> Drops 20% in a Week - Decrypt</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Shares of publicly traded <span class="highlight">Bitcoin</span> miners are plummeting as <span class="highlight">Bitcoin</span> marked a new 15-month low <span class="highlight">price</span>, dipping to $72,185 on Wednesday—now down nearly 20% over the last week.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://decrypt.co/356931/bitcoin-mining-stocks-plunge-btc-price-drops-20-percent" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://finance.yahoo.com/news/bitcoin-mining-stocks-dive-btc-175850951.html" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://finance.yahoo.com</span></span><span class="url_o2"><span class="url_i2"> › news › bitcoin-mining-stocks-dive-btc-175850951.html</span></span>  </div></a><a href="https://finance.yahoo.com/news/bitcoin-mining-stocks-dive-btc-175850951.html" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/QfLIUvg5ktjsr_qDzofGaEFtzmgsoiGIOtoYPwrWcf8/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9zLnlp/bWcuY29tL255L2Fw/aS9yZXMvMS4yL2Vl/UHJGZVVONGphMGV3/dUhGbUxfY0EtLS9Z/WEJ3YVdROWFHbG5h/R3hoYm1SbGNqdDNQ/VEkwTURBN2FEMHhN/elV3L2h0dHBzOi8v/bWVkaWEuemVuZnMu/Y29tL2VuL2RlY3J5/cHRfMTU3L2E5NzYx/ODRlYWE3Y2EzNzdj/MDA2MWVlZWI0Y2Rk/ZjJl" title="Bitcoin Mining Stocks Dive as BTC Price Drops 20% in a Week" loading="lazy"></a><h3><a href="https://finance.yahoo.com/news/bitcoin-mining-stocks-dive-btc-175850951.html" rel="noreferrer"><span class="highlight">Bitcoin</span> Mining Stocks Dive as BTC <span class="highlight">Price</span> Drops 20% in a Week</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    Shares of publicly traded <span class="highlight">Bitcoin</span> miners are plummeting as <span class="highlight">Bitcoin</span> marked a new 15-month low <span class="highlight">price</span>, dipping to $72,185 on Wednesday—now down nearly 20% over the last week.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://finance.yahoo.com/news/bitcoin-mining-stocks-dive-btc-175850951.html" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.coingecko.com/en/coins/bitcoin" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.coingecko.com</span></span><span class="url_o2"><span class="url_i2"> › en › coins › bitcoin</span></span>  </div></a><a href="https://www.coingecko.com/en/coins/bitcoin" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/roa3-Zc0ywGcD56JSJN9gXMllkOwPR1qqllAbt5I4Ys/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuY29pbmdlY2tv/LmNvbS9jb2lucy9p/bWFnZXMvMS9zdGFu/ZGFyZC9iaXRjb2lu/LnBuZz8xNjk2NTAx/NDAw" title="Bitcoin Price: BTC Live Price Chart, Market Cap &amp; News Today | CoinGecko" loading="lazy"></a><h3><a href="https://www.coingecko.com/en/coins/bitcoin" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span>: BTC Live <span class="highlight">Price</span> Chart, Market Cap &amp; News Today | CoinGecko</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content empty_element">
+    This site did not provide any description.
+  </p>
+<div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.coingecko.com/en/coins/bitcoin" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://ts2.tech/en/mara-stock-price-tumbles-11-as-bitcoin-slides-what-traders-are-watching-next/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://ts2.tech</span></span><span class="url_o2"><span class="url_i2"> › en › mara-stock-price-tumbles-11-as-bitcoin-slides-what-traders-are-watching-next</span></span>  </div></a><a href="https://ts2.tech/en/mara-stock-price-tumbles-11-as-bitcoin-slides-what-traders-are-watching-next/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/EzapA8caWpLC1zXJJH6gBtB0_GN8-sDu-k1vz0U98jM/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly90czIu/dGVjaC93cC1jb250/ZW50L3VwbG9hZHMv/MjAyNi8wMi9tYXJh/LXN0b2NrLXByaWNl/LXR1bWJsZXMtMTEt/YXMtYml0Y29pbi1z/bGlkZXMtd2hhdC10/cmFkZXJzLWFyZS13/YXRjaGluZy1uZXh0/LWZlYXR1cmVkLmpw/Zw" title="MARA stock price tumbles 11% as Bitcoin slides — what traders are watching next" loading="lazy"></a><h3><a href="https://ts2.tech/en/mara-stock-price-tumbles-11-as-bitcoin-slides-what-traders-are-watching-next/" rel="noreferrer">MARA stock <span class="highlight">price</span> tumbles 11% as <span class="highlight">Bitcoin</span> slides — what traders are watching next</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> was down nearly 4% near $72,300.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://ts2.tech/en/mara-stock-price-tumbles-11-as-bitcoin-slides-what-traders-are-watching-next/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://charts.bitbo.io/price/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://charts.bitbo.io</span></span><span class="url_o2"><span class="url_i2"> › price</span></span>  </div></a><a href="https://charts.bitbo.io/price/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/P1IiILF2DE3exUErPCAEJw9ikqlCD5ZCpDaDS_R_aBo/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9jaGFy/dHMuYml0Ym8uaW8v/c3RhdGljL3RoZW1l/L2ltZy9vZy5wbmc" title="Bitcoin Price History Chart (2009, 2010 to 2025)" loading="lazy"></a><h3><a href="https://charts.bitbo.io/price/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> History Chart (2009, 2010 to 2025)</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    The BitcoinTalk forum member ... through PayPal. This puts the first recorded <span class="highlight">price</span> at which <span class="highlight">Bitcoin</span> exchanged hands at $0.00099/BTC....
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://charts.bitbo.io/price/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.fxempire.com/forecasts/article/bitcoin-price-news-btc-risks-drop-to-66k-as-liquidations-surpass-6bn-1577333" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.fxempire.com</span></span><span class="url_o2"><span class="url_i2"> › forecasts › article › bitcoin-price-news-btc-risks-drop-to-66k-as-liquidations-surpass-6bn-1577333</span></span>  </div></a><a href="https://www.fxempire.com/forecasts/article/bitcoin-price-news-btc-risks-drop-to-66k-as-liquidations-surpass-6bn-1577333" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/PefzIRjHdCdYqUV9oqNAKORDwkPX_JRnK2HSkUJRfOs/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9yZXNw/b25zaXZlLmZ4ZW1w/aXJlLmNvbS92Ny9f/ZnhlbXBpcmVfLzIw/MjYvMDIvYml0Y29p/bi1wcmljZS1uZXdz/LnBuZz9mdW5jPWNv/dmVyJmFtcDtxPTcw/JmFtcDt3aWR0aD03/MDA" title="Bitcoin Price News: BTC Risks Drop to $66K as Liquidations Surpass $6bn | FXEmpire" loading="lazy"></a><h3><a href="https://www.fxempire.com/forecasts/article/bitcoin-price-news-btc-risks-drop-to-66k-as-liquidations-surpass-6bn-1577333" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">Price</span> News: BTC Risks Drop to $66K as Liquidations Surpass $6bn | FXEmpire</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> hangs by a thread at $75,000 as “Warsh Pivot” triggers $6B wipe-out — <span class="highlight">Bitcoin</span> <span class="highlight">price</span> prediction warns that a break below this mark could open the trapdoor to $66,000.
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.fxempire.com/forecasts/article/bitcoin-price-news-btc-risks-drop-to-66k-as-liquidations-surpass-6bn-1577333" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>
+<article class="result result-default category-general"><a href="https://www.tradingview.com/news/cointelegraph:762807409094b:0-bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/" class="url_header" rel="noreferrer"><div class="url_wrapper"><span class="url_o1"><span class="url_i1">https://www.tradingview.com</span></span><span class="url_o2"><span class="url_i2"> › news › cointelegraph:762807409094b:0-bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m</span></span>  </div></a><a href="https://www.tradingview.com/news/cointelegraph:762807409094b:0-bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/" class="thumbnail_link" rel="noreferrer"><img class="thumbnail" src="https://imgs.search.brave.com/NxQxkucUcvbHhjDo31Djow4QESooWZ6wtVv0CoJYGuI/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9zLnRy/YWRpbmd2aWV3LmNv/bS9zdGF0aWMvaW1h/Z2VzL2lsbHVzdHJh/dGlvbnMvbmV3cy1z/dG9yeS5qcGc" title="Bitcoin price sets new 15-month low under $73K as crypto liquidates $800M — TradingView News" loading="lazy"></a><h3><a href="https://www.tradingview.com/news/cointelegraph:762807409094b:0-bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/" rel="noreferrer"><span class="highlight">Bitcoin</span> <span class="highlight">price</span> sets new 15-month low under $73K as crypto liquidates $800M — TradingView News</a></h3><!-- Length is displayed inside the thumbnail if there's any, so don't display it here a second time -->  <p class="content">
+    <span class="highlight">Bitcoin</span> BITSTAMP:BTCUSD saw a second dip below $73,000 after Wednesday’s Wall Street open as US sellers returned.Key points:<span class="highlight">Bitcoin</span> joins precious metals in failed relief bounceData from TradingView showed characteristic BTC <span class="highlight">price</span> weakness ...
+  </p><div class="engines">
+<span>brave</span>  <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><circle cx="256" cy="256" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="416" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/><circle cx="256" cy="96" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"/></svg><a href="https://web.archive.org/web/https://www.tradingview.com/news/cointelegraph:762807409094b:0-bitcoin-price-sets-new-15-month-low-under-73k-as-crypto-liquidates-800m/" class="cache_link" rel="noreferrer">cached</a>
+</div><div class="break"></div></article>    </div>
+    <div id="backToTop">
+      <a href="#" aria-label="Back to top"><svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><path d="m112 328 144-144 144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"/></svg></a>
+    </div>
+    <nav id="pagination" role="navigation">
+<form method="POST" action="/search" class="next_page">
+              <div class="right">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="2" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+<button role="link"  type="submit">Next page <svg viewBox="0 0 512 512" class="ionicon sxng-icon-set-small" aria-hidden="true"><path d="m184 112 144 144-144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"/></svg></button>
+              </div>
+          </form>
+        <div class="numbered_pagination">
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="1" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number_current" type="button" value="1">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="2" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="2">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="3" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="3">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="4" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="4">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="5" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="5">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="6" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="6">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="7" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="7">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="8" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="8">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="9" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="9">
+            </form>
+            <form method="POST" action="/search" class="page_number">
+                <input type="hidden" name="q" value="bitcoin price" >
+                <input type="hidden" name="category_general" value="1" >
+                <input type="hidden" name="pageno" value="10" >
+                <input type="hidden" name="language" value="auto" >
+                <input type="hidden" name="time_range" value="" >
+                <input type="hidden" name="safesearch" value="0" >
+                <input type="hidden" name="theme" value="simple" >
+                <input role="link" class="page_number" type="submit" value="10">
+            </form>
+        </div>
+    </nav>
+</div>
+  </main>
+  <footer>
+    <p>
+    Powered by <a href="/info/en/about">SearXNG</a> - 2026.1.27+966988e36 — a privacy-respecting, open metasearch engine<br>
+        <a href="https://github.com/searxng/searxng">Source code</a>
+        | <a href="https://github.com/searxng/searxng/issues">Issue tracker</a>
+| <a href="/stats">Engine stats</a>        | <a href="https://searx.space">Public instances</a>
+    </p>
+  </footer>
+</body>
+</html>
