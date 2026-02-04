@@ -13,66 +13,77 @@
 - 🛡️ **Admin Controls**: Full control over your personal instance
 - 📦 **Self-Contained**: No external API keys required (uses local Ollama)
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Source Installation)
 
 ### Prerequisites
 
 - Python 3.10+
 - [Ollama](https://ollama.ai) installed and running locally
+- Git
 
 ### Installation
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/immy35/YouClaw.git
+   cd YouClaw
+   ```
+
+2. **Install local dependencies:**
+   ```bash
+   python3 -m pip install -e . --user
+   ```
+
+3. **Configure Environment:**
+   YouClaw uses a `.env` file for configuration. It will be created automatically in `~/.youclaw/.env` on first run, but you can also set variables manually.
+
+### Running YouClaw
+
+Run the bot directly from the source code:
+
 ```bash
-pip install youclaw
+PYTHONPATH=src python3 -m youclaw.bot
 ```
 
-### First Run
-
+**For background execution (VPS/Server):**
 ```bash
-youclaw start
+PYTHONPATH=src nohup python3 -m youclaw.bot > youclaw.log 2>&1 &
 ```
-
-This will launch the **Neural Wizard** - an interactive setup that guides you through:
-- Telegram bot token configuration
-- Discord bot token configuration  
-- Search engine URL (optional)
-- Email credentials (optional)
-
-You can skip any step and configure it later via the dashboard.
 
 ### Access Dashboard
 
-After setup, access your Mission Control at:
+After starting the bot, access your Mission Control at:
 ```
 http://localhost:8080
 ```
+*(Or your VPS IP address:8080)*
 
 ## 📖 Usage
 
-### CLI Commands
+### CLI Commands (Source Mode)
+
+If you installed with `pip install -e .`, you can also use the `youclaw` command directly:
 
 ```bash
-youclaw start      # Start YouClaw (runs wizard if unconfigured)
+youclaw start      # Start YouClaw
 youclaw check      # Health check
-youclaw dashboard  # Start dashboard only
 ```
 
 ### Creating Your First Admin Account
 
-1. Navigate to `http://localhost:8080`
+1. Navigate to the dashboard (http://localhost:8080)
 2. Click "Register"
 3. Create your account (first user is automatically admin)
-4. Access the ROOT PROTOCOLS panel at the bottom
+4. Link your Telegram/Discord account in the dashboard to enable full features.
 
 ## 🔧 Configuration
 
-YouClaw stores configuration in `.env` and uses SQLite for data persistence.
+YouClaw stores data in `~/.youclaw/` (Linux/Mac) or `%USERPROFILE%\.youclaw\` (Windows).
 
-### Environment Variables
+### Key Environment Variables (`~/.youclaw/.env`)
 
 ```bash
 OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=qwen2.5:1.5b-instruct
 TELEGRAM_BOT_TOKEN=your_token_here
 DISCORD_BOT_TOKEN=your_token_here
 SEARCH_ENGINE_URL=http://your-search-engine/search
@@ -92,15 +103,3 @@ MIT License - See LICENSE file for details
 ## 🤝 Contributing
 
 Contributions are welcome! This is an open-source personal AI assistant project.
-
-## 🐛 Issues
-
-Report issues on GitHub: [Your Repository URL]
-
-## 💬 Community
-
-Join the discussion: [Your Community Link]
-
----
-
-**Made with 🦞 by the YouClaw Community**
