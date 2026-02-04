@@ -171,7 +171,8 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
     context = {
         "platform": platform,
         "user_id": user_id,
-        "current_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "current_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "FORCE_VISION": True
     }
     
     # Enhance prompt with variation instructions

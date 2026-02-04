@@ -257,10 +257,12 @@ class OllamaClient:
 
         # Silent Intent Detection & Real-Time Search Injection
         search_context = None
+        force_vision = context.get("FORCE_VISION", False) if context else False
+        
         if last_user_msg:
             is_fact_seeking = await self._detect_search_intent(last_user_msg)
-            if is_fact_seeking:
-                logger.info("🔍 Neural Intent Detected (ReAct Unary): Fetching real-time data...")
+            if is_fact_seeking or force_vision:
+                logger.info(f"🔍 Neural Intent Detected ({'FORCE' if force_vision else 'ReAct'}): Fetching real-time data...")
                 search_context = await search_client.search(last_user_msg)
         
         system_prompt = await self._build_system_prompt(user_profile, search_context, include_tools=True, query=last_user_msg)
