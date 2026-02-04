@@ -176,10 +176,11 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
     
     # Enhance prompt with variation instructions
     enhanced_prompt = (
-        f"USER REQUEST: {prompt}\n\n"
-        f"CRITICAL: Do not repeat yourself. If you see in the history that you already said something, "
-        f"try a completely different approach or topic. Be creative!\n"
-        f"Current system time: {context['current_time']}"
+        f"### MISSION BRIEFING:\n{prompt}\n\n"
+        "### MISSION DIRECTIVES:\n"
+        "1. NO REPETITION: If your history shows you've said this before, pivot to a new angle.\n"
+        "2. ACCURACY: If this mission requires news, prices, or status, you MUST check your REAL-TIME VISION.\n"
+        f"3. CHRONOS: Current system time is {context['current_time']}.\n"
     )
     
     try:

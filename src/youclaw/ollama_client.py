@@ -433,7 +433,7 @@ class OllamaClient:
         Looking for question words, entities, or time-sensitive queries.
         """
         # Quick heuristic (Fast & Efficient)
-        keywords = ["who", "what", "where", "when", "why", "how", "price", "weather", "news", "current", "latest", "today", "yesterday", "bitcoin", "crypto", "stock", "usd", "valuation"]
+        keywords = ["who", "what", "where", "when", "why", "how", "price", "weather", "news", "current", "latest", "today", "yesterday", "bitcoin", "crypto", "stock", "usd", "valuation", "status", "info", "update", "happening"]
         text_lower = text.lower()
         if any(word in text_lower for word in keywords) or "?" in text:
             return True
@@ -477,15 +477,16 @@ class OllamaClient:
             "5. REAL-TIME VISION (FORCE): You are connected to the live internet. If you see 'REAL-TIME VISION' in your context, you MUST use that data as the absolute Source of Truth for current prices, news, and time-sensitive facts. Check the dates in results—the most recent date wins.\n"
         )
         
-        # Phase 2: Memory & Context
+        # Phase 2: Real-Time vision (TOP PRIORITY FOR ACCURACY)
         context_block = ""
+        if search_context:
+            context_block += f"\n### REAL-TIME VISION (URGENT):\nYour neural link has retrieved the following live data. This is more accurate than your training data. Use it!\n{search_context}\n"
+
+        # Phase 3: Memory & Semantic Context
         if query:
             semantic_context = await memory_manager.get_semantic_context(query)
             if semantic_context:
                 context_block += f"\n### NEURAL ECHOES (History):\n{semantic_context}\n"
-        
-        if search_context:
-            context_block += f"\n### REAL-TIME VISION:\n{search_context}\n"
 
         # Phase 3: The Protocol (Capabilities) - THIS MUST BE LAST
         if include_tools:
