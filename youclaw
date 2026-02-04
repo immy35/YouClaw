@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+"""
+YouClaw CLI entry point
+Makes 'youclaw' command available system-wide
+"""
+
+from cli import main
+
+if __name__ == "__main__":
+    main()

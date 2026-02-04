@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0,<69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "youclaw"
+version = "4.8.2"
+authors = [
+  { name="Imran", email="imran@example.com" },
+]
+description = "Your Personal AI Assistant - Universal Neural Core"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiosqlite",
+    "aiohttp",
+    "aiohttp-jinja2",
+    "jinja2",
+    "python-dotenv",
+    "apscheduler",
+    "python-telegram-bot",
+    "discord.py",
+    "httpx",
+    "beautifulsoup4",
+    "sqlalchemy",
+    "numpy",
+    "psutil",
+]
+
+[project.scripts]
+youclaw = "youclaw.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*", "data*", "*.log", ".env*"]
+
+[tool.setuptools.package-data]
+youclaw = ["*.html", "*.css", "*.js"]

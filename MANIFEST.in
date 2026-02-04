@@ -1,0 +1,8 @@
+recursive-exclude data *
+recursive-exclude __pycache__ *
+exclude .env
+exclude bot_output.log
+exclude youclaw.log
+exclude test_*.py
+exclude *.db
+exclude *.sqlite

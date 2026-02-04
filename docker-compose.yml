@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  youclaw:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./.env:/app/.env
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
