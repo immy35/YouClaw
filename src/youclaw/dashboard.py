@@ -164,7 +164,7 @@ async def api_stats(request):
             ollama_health = False
         
         stats = {
-            "version": "4.9.8",
+            "version": "4.9.10",
             "status": "online",
             "uptime": uptime_str,
             "ollama_connected": ollama_health,
@@ -1184,7 +1184,7 @@ DASHBOARD_HTML = """
             if(convs && !convs.error) {
                 document.getElementById('conversations-list').innerHTML = convs.conversations.map(c => `
                     <div class="item-card">
-                        <div style="font-size: 0.85rem; font-weight: 800;">Thread: ${c.channel_id.substring(0,8)}...</div>
+                        <div style="font-size: 0.85rem; font-weight: 800;">Thread: ${(c.channel_id || 'Direct').substring(0,8)}...</div>
                         <div style="font-size: 0.75rem; color: var(--text-dim);">${c.message_count} states synced</div>
                     </div>
                 `).join('');
