@@ -18,17 +18,20 @@ class SkillManager:
     
     def __init__(self):
         self.skills: Dict[str, Dict[str, Any]] = {}
+        self.pending_approvals: Dict[str, Dict[str, Any]] = {}  # Format: {request_id: {name, args, ...}}
         self.dynamic_dir = "dynamic_skills"
         if not os.path.exists(self.dynamic_dir):
             os.makedirs(self.dynamic_dir)
     
-    def skill(self, name: str = None, description: str = None, admin_only: bool = False):
+    def skill(self, name: str = None, description: str = None, admin_only: bool = False, risk_level: str = "LOW"):
         """
         Decorator to register a function as a skill.
         
         Args:
-            name: Optional custom name for the skill (defaults to function name)
-            description: Optional description (defaults to function docstring)
+            name: Optional custom name
+            description: Optional description
+            admin_only: If True, restricted to admin users
+            risk_level: "LOW" (safe), "MEDIUM", or "HIGH" (requires approval)
         """
         def decorator(func: Callable):
             skill_name = name or func.__name__
@@ -50,10 +53,11 @@ class SkillManager:
                 "func": func,
                 "parameters": parameters,
                 "is_async": inspect.iscoroutinefunction(func),
-                "admin_only": admin_only # Added admin_only flag
+                "admin_only": admin_only,
+                "risk_level": risk_level
             }
             
-            logger.info(f"registered skill: {skill_name} (admin_only: {admin_only})")
+            logger.info(f"registered skill: {skill_name} (risk: {risk_level}, admin: {admin_only})")
             
             @functools.wraps(func)
             def wrapper(*args, **kwargs):
@@ -75,7 +79,7 @@ class SkillManager:
         # Legacy support
         return self.get_skills_doc()
 
-    async def execute_skill(self, name: str, arguments: Dict[str, Any]) -> Any:
+    async def execute_skill(self, name: str, arguments: Dict[str, Any], bypass_security: bool = False) -> Any:
         """Execute a registered skill by name"""
         if name not in self.skills:
             return f"Error: Skill '{name}' not found"
@@ -96,6 +100,23 @@ class SkillManager:
                 logger.warning(f"🛑 Security Alert: Unauthorized access attempt to '{name}' by {current_id}")
                 return f"Permission Denied: Skill '{name}' is reserved for the bot administrator."
 
+                logger.warning(f"🛑 Security Alert: Unauthorized access attempt to '{name}' by {current_id}")
+                return f"Permission Denied: Skill '{name}' is reserved for the bot administrator."
+
+        # Security: Iron Dome Interception
+        if not bypass_security and skill.get('risk_level') == "HIGH":
+            import uuid
+            request_id = str(uuid.uuid4())[:8]
+            self.pending_approvals[request_id] = {
+                "name": name,
+                "arguments": arguments,
+                "timestamp": __import__('time').time(),
+                "initiator": arguments.get('user_id', 'unknown')
+            }
+            logger.info(f"🛡️ Iron Dome Intercepted {name}: Pending Approval {request_id}")
+            # Return a special signal string that the Handler will parse
+            return f"[SECURITY_INTERCEPT] ID:{request_id} COMMAND:{name}"
+
         try:
             logger.info(f"Executing skill '{name}' with args: {arguments}")
             if skill['is_async']:
@@ -106,6 +127,18 @@ class SkillManager:
         except Exception as e:
             logger.error(f"Error executing skill '{name}': {e}", exc_info=True)
             return f"Error: {str(e)}"
+
+            logger.error(f"Error executing skill '{name}': {e}", exc_info=True)
+            return f"Error: {str(e)}"
+
+    async def confirm_execution(self, request_id: str) -> str:
+        """Confirm and execute a pending skill"""
+        if request_id not in self.pending_approvals:
+            return "Error: Request expired or invalid."
+            
+        data = self.pending_approvals.pop(request_id)
+        logger.info(f"✅ Iron Dome Approved: Executing {data['name']}")
+        return await self.execute_skill(data['name'], data['arguments'], bypass_security=True)
 
     def load_dynamic_skills(self):
         """Scan dynamic_skills folder and import them"""

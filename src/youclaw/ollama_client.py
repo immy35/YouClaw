@@ -210,6 +210,13 @@ class OllamaClient:
                                 if k not in args: args[k] = v
                             
                             observation = await skill_manager.execute_skill(action, args)
+                            
+                            # Iron Dome: Check for security intercept
+                            if isinstance(observation, str) and "[SECURITY_INTERCEPT]" in observation:
+                                # Stop reasoning immediately and pass the intercept back to the UI
+                                yield observation 
+                                return
+
                             current_messages.append({"role": "user", "content": f"Observation: {observation}"})
                             continue
                     except Exception as e:
@@ -289,6 +296,12 @@ class OllamaClient:
                                 if k not in args: args[k] = v
                             
                             observation = await skill_manager.execute_skill(action, args)
+                            
+                            # Iron Dome: Check for security intercept
+                            if isinstance(observation, str) and "[SECURITY_INTERCEPT]" in observation:
+                                # Stop reasoning immediately and pass the intercept back to the UI
+                                return observation 
+
                             current_messages.append({"role": "user", "content": f"Observation: {observation}"})
                             continue
                     except Exception as e:

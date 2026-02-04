@@ -58,7 +58,7 @@ def list_emails(limit: int = 5) -> str:
         logger.error(f"IMAP Error: {e}")
         return f"Protocol Fault during IMAP handshake: {str(e)}"
 
-@skill_manager.skill(name="send_email", description="Send an email to a specific recipient.")
+@skill_manager.skill(name="send_email", description="Send an email to a specific recipient.", risk_level="HIGH")
 def send_email(to_address: str, subject: str, body: str) -> str:
     """Connects to the SMTP server and transmits a new email message."""
     if not config.email.enabled:
@@ -104,7 +104,7 @@ def read_file(file_path: str) -> str:
     except Exception as e:
         return f"Error reading file: {str(e)}"
 
-@skill_manager.skill(name="shell_command", description="DANGEROUS: Execute a bash command on the server. Use with extreme caution.", admin_only=True)
+@skill_manager.skill(name="shell_command", description="DANGEROUS: Execute a bash command on the server.", admin_only=True, risk_level="HIGH")
 def shell_command(command: str) -> str:
     """Executes a system command and returns the output (stdout and stderr)."""
     try:
@@ -144,7 +144,7 @@ async def store_secret(key: str, value: str, platform: str, user_id: str) -> str
     from .memory_manager import memory_manager
     await memory_manager.set_user_secret(platform, user_id, key, value)
     return f"I've securely stored your '{key}' secret."
-@skill_manager.skill(name="run_python_code", description="Execute arbitrary Python code on the server.", admin_only=True)
+@skill_manager.skill(name="run_python_code", description="Execute arbitrary Python code on the server.", admin_only=True, risk_level="HIGH")
 def run_python_code(code: str) -> str:
     """Executes Python code and returns the result of the last expression or printed output."""
     try:

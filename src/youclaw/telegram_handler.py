@@ -3,12 +3,13 @@ YouClaw Telegram Handler
 Handles Telegram-specific message processing and bot interactions.
 """
 
-from telegram import Update
-from telegram.ext import Application, MessageHandler, filters, ContextTypes
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 import logging
 import asyncio
 from typing import Optional
 from .config import config
+from .skills_manager import skill_manager
 from .ollama_client import ollama_client
 from .memory_manager import memory_manager
 from .search_client import search_client
@@ -117,7 +118,36 @@ class TelegramHandler:
         )
     
     async def send_message(self, update: Update, content: str):
-        """Send a message, handling Telegram's 4096 char limit"""
+        """Send a message, handling Telegram's 4096 char limit AND security intercepts"""
+        
+        # Check for Security Intercept
+        if "[SECURITY_INTERCEPT]" in content:
+            # Parse Format: [SECURITY_INTERCEPT] ID:{request_id} COMMAND:{name}
+            try:
+                parts = content.split()
+                req_id = parts[1].split(":")[1]
+                cmd_name = parts[2].split(":")[1]
+                
+                keyboard = [
+                    [
+                        InlineKeyboardButton("✅ Approve", callback_data=f"approve:{req_id}"),
+                        InlineKeyboardButton("❌ Deny", callback_data=f"deny:{req_id}")
+                    ]
+                ]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                
+                text = (
+                    f"🛑 **SECURITY ALERT**\n\n"
+                    f"I need your permission to execute a high-risk command:\n"
+                    f"**Action:** `{cmd_name}`\n\n"
+                    f"Do you authorize this?"
+                )
+                await update.message.reply_text(text, reply_markup=reply_markup, parse_mode="Markdown")
+                return
+            except Exception as e:
+                logger.error(f"Failed to parse security intercept: {e}")
+                # Fallthrough to normal send if parsing fails
+
         if len(content) <= 4096:
             await update.message.reply_text(content)
         else:
@@ -125,6 +155,34 @@ class TelegramHandler:
             chunks = [content[i:i+4096] for i in range(0, len(content), 4096)]
             for chunk in chunks:
                 await update.message.reply_text(chunk)
+
+    async def handle_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle button clicks"""
+        query = update.callback_query
+        await query.answer()
+        
+        data = query.data
+        action, req_id = data.split(":")
+        
+        if action == "approve":
+            # Execute the pending skill
+            await query.edit_message_text(f"✅ **APPROVED**. Executing command...")
+            
+            # Run the suspended skill
+            result = await skill_manager.confirm_execution(req_id)
+            
+            # Send result
+            await context.bot.send_message(
+                chat_id=query.message.chat_id, 
+                text=f"**Command Output:**\n```\n{result}\n```", 
+                parse_mode="Markdown"
+            )
+            
+        elif action == "deny":
+            # Remove request
+            if req_id in skill_manager.pending_approvals:
+                del skill_manager.pending_approvals[req_id]
+            await query.edit_message_text(f"❌ **DENIED**. Action cancelled.")
     
     async def start(self):
         """Start the Telegram bot"""
@@ -136,6 +194,9 @@ class TelegramHandler:
         
         # Create application
         self.app = Application.builder().token(config.telegram.token).build()
+        
+        # Add callback handler for buttons
+        self.app.add_handler(CallbackQueryHandler(self.handle_callback))
         
         # Add message handler
         self.app.add_handler(
