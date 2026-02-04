@@ -7,6 +7,10 @@ import os
 from dataclasses import dataclass
 from typing import Optional
 from pathlib import Path
+from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Permanent Data Directory (~/.youclaw)
 DATA_DIR = Path.home() / ".youclaw"
