@@ -33,29 +33,39 @@ class SearchClient:
                     soup = BeautifulSoup(html, 'html.parser')
                     
                     results = []
-                    # SearXNG default theme (simple) result container
-                    articles = soup.select('article.result') or soup.select('.result')
                     
-                    for i, article in enumerate(articles[:4]):
+                    # 1. Capture Infobox (Direct Answer/Fact Sheet)
+                    infobox = soup.select_one('.infobox, aside.infobox')
+                    if infobox:
+                        title = infobox.select_one('.title, h2')
+                        content = infobox.select_one('.content, p')
+                        if title and content:
+                            results.append(f"DIRECT ANSWER: {title.get_text(strip=True)}\nSUMMARY: {content.get_text(strip=True)}")
+
+                    # 2. Capture regular results
+                    articles = soup.select('article.result') or soup.select('.result')
+                    for i, article in enumerate(articles[:5]):
                         title_tag = article.select_one('h3 a, .title a')
                         snippet_tag = article.select_one('.content, .snippet')
+                        date_tag = article.select_one('.published_date, .date')
                         
                         if title_tag:
                             title = title_tag.get_text(strip=True)
                             link = title_tag.get('href', '')
                             snippet = snippet_tag.get_text(strip=True) if snippet_tag else "No details available."
+                            date = date_tag.get_text(strip=True) if date_tag else "Unknown Date"
                             
                             # Clean up links (SearXNG sometimes wraps them)
                             if link.startswith('/'):
                                 link = f"{url.split('/search')[0]}{link}"
                                 
-                            results.append(f"SOURCE [{i+1}]: {title}\nURL: {link}\nSUMMARY: {snippet}")
+                            results.append(f"SOURCE [{i+1}]: {title} ({date})\nURL: {link}\nSUMMARY: {snippet}")
                     
                     if not results:
                         logger.warning("Search returned 0 results.")
                         return "No real-time data found in the neural streams."
                     
-                    logger.info(f"✅ Search complete. Found {len(results)} sources.")
+                    logger.info(f"✅ Search complete. Found {len(results)} items.")
                     return "\n\n".join(results)
                     
         except Exception as e:
