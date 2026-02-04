@@ -490,7 +490,7 @@ DASHBOARD_HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouClaw V4.8.0 | Justice Neural Hub 🦞</title>
+    <title>YouClaw V4.8.4 | Justice Neural Hub 🦞</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -783,7 +783,7 @@ DASHBOARD_HTML = """
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="app-sidebar" style="display: none;">
         <div>
-            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.8.0</span></div>
+            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.8.4</span></div>
             <div class="nav-list">
                 <div class="nav-item active" id="nav-dash" onclick="switchView('dashboard')"><i>📊</i> Control Center</div>
                 <div class="nav-item" id="nav-chat" onclick="switchView('chat')"><i>💬</i> Neural Terminal</div>
@@ -1377,7 +1377,7 @@ DASHBOARD_HTML = """
         }
 
         initDashboard();
-        console.log("🦞 YouClaw Dashboard v4.8.0 loaded successfully");
+        console.log("🦞 YouClaw Dashboard v4.8.4 loaded successfully");
     </script>
 </body>
 </html>

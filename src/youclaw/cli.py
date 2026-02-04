@@ -251,7 +251,7 @@ class YouClawCLI:
         
         if not Path(".env").exists():
             print("⚠️ No configuration found. Launching Neural Wizard...")
-            asyncio.run(self.run_wizard())
+            await self.run_wizard()
             return 0
 
         # Check if already running
@@ -268,7 +268,7 @@ class YouClawCLI:
                 # PID file exists but process is dead, clean it up
                 pid_file.unlink()
 
-        print(f"🦞 Starting YouClaw v4.7.3 in background...")
+        print(f"🦞 Starting YouClaw v4.8.4 in background...")
         
         if foreground:
             print("🦞 Starting YouClaw in foreground mode...")
@@ -489,7 +489,10 @@ Examples:
         }
         
         if args.command in command_map:
-            return command_map[args.command](args)
+            res = command_map[args.command](args)
+            if asyncio.iscoroutine(res):
+                return asyncio.run(res)
+            return res
         else:
             print(f"Unknown command: {args.command}")
             return 1
