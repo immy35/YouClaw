@@ -172,11 +172,12 @@ async def api_stats(request):
             "telegram_enabled": config.telegram.enabled,
             "discord_enabled": config.discord.enabled,
             "timestamp": datetime.now().isoformat(),
-            "total_messages": total_messages,
+            "user_messages": total_messages,
             "unique_users": unique_users,
             "active_personality": personality_name,
             "user_identity": f"{platform}:{user_id}" if user_id else "Guest",
             "is_linked": bool(user_id),
+            "model": ollama_client.model if ollama_health_bool else "Disconnected",
             "is_admin": is_admin
         }
         
