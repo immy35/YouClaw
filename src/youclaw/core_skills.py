@@ -240,3 +240,17 @@ async def update_my_profile(name: Optional[str] = None, interests: Optional[str]
     except Exception as e:
         return f"Error updating neural profile: {str(e)}"
 
+@skill_manager.skill(name="get_my_profile", description="Retrieve your own name and interests from my memory.")
+async def get_my_profile(platform: str = "", user_id: str = "") -> str:
+    """Retrieves your personal profile. Use this if you are unsure who your partner is."""
+    from .memory_manager import memory_manager
+    profile = await memory_manager.get_user_profile(platform, user_id)
+    name = profile.get('name')
+    interests = profile.get('interests')
+    
+    if not name:
+        return "I don't have a name saved for you yet! You can tell me your name and I'll remember it."
+        
+    return f"I know you! Your name is {name} and you're interested in {interests or 'many things'}. 🦞✨"
+
+

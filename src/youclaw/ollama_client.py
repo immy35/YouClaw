@@ -478,7 +478,7 @@ class OllamaClient:
             
             react_protocol = (
                 "### NEURAL ACTION PROTOCOL (MANDATORY):\n"
-                "If an action is needed, you MUST use this format EXACTLY. ONE action at a time.\n"
+                "If you need to perform an action (Search, Reminder, Update Profile, Check Identity), you MUST use this format EXACTLY.\n"
                 "STRICT FORMAT:\n"
                 "Thought: [your reasoning]\n"
                 "Action: [tool_name]\n"
