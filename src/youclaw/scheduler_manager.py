@@ -184,6 +184,9 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
         f"3. CHRONOS: Current system time is {context['current_time']}.\n"
     )
     
+    # Store original prompt for search client if needed
+    context["original_prompt"] = prompt
+    
     try:
         # Trigger full reasoning loop with history
         response = await ollama_client.chat_with_tools(

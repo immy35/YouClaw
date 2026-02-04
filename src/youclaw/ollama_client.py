@@ -260,10 +260,13 @@ class OllamaClient:
         force_vision = context.get("FORCE_VISION", False) if context else False
         
         if last_user_msg:
-            is_fact_seeking = await self._detect_search_intent(last_user_msg)
+            # For Cron jobs, we want to search the original prompt, not the MISSION BRIEFING wrapper
+            search_query = context.get("original_prompt", last_user_msg) if context else last_user_msg
+            is_fact_seeking = await self._detect_search_intent(search_query)
+            
             if is_fact_seeking or force_vision:
-                logger.info(f"🔍 Neural Intent Detected ({'FORCE' if force_vision else 'ReAct'}): Fetching real-time data...")
-                search_context = await search_client.search(last_user_msg)
+                logger.info(f"🔍 Neural Intent Detected ({'FORCE' if force_vision else 'ReAct'}): Fetching real-time data for: {search_query[:50]}...")
+                search_context = await search_client.search(search_query)
         
         system_prompt = await self._build_system_prompt(user_profile, search_context, include_tools=True, query=last_user_msg)
         
