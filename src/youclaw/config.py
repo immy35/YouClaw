@@ -19,33 +19,18 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 # Path to .env file
 ENV_PATH = DATA_DIR / ".env"
 
-# --- MIGRATION LOGIC (v4.8.8) ---
-# If a local .env exists but the stable one doesn't, migrate it
 local_env = Path(".env")
-if local_env.exists() and not ENV_PATH.exists():
+if not ENV_PATH.exists() and local_env.exists():
+    import shutil
     try:
-        import shutil
         shutil.copy(local_env, ENV_PATH)
-        logger.info(f"✨ Migrated legacy config from {local_env} to {ENV_PATH}")
-    except Exception as me:
-        logger.warning(f"⚠️ Migration failed: {me}")
+        logger.info(f"✨ Migrated {local_env} to stable home.")
+    except: pass
 
-# If a local data directory exists but the stable one is fresh, move the DB
-local_db = Path("data/youclaw.db")
-stable_db = DATA_DIR / "youclaw.db"
-if local_db.exists() and not stable_db.exists():
-    try:
-        import shutil
-        shutil.copy(local_db, stable_db)
-        logger.info(f"✨ Migrated legacy memory from {local_db} to {stable_db}")
-    except Exception as me:
-        logger.warning(f"⚠️ Memory migration failed: {me}")
-# -------------------------------
-
-# Load environment variables (from standard locations and our permanent home)
-load_dotenv() # Load from CWD first for dev
+# Load environment variables
+load_dotenv() # Load from CWD
 if ENV_PATH.exists():
-    load_dotenv(dotenv_path=ENV_PATH, override=True) # Override with permanent secrets
+    load_dotenv(dotenv_path=ENV_PATH, override=True) # Absolute priority to stable home
 
 
 @dataclass

@@ -164,6 +164,7 @@ async def api_stats(request):
             ollama_health = False
         
         stats = {
+            "version": "4.8.9",
             "status": "online",
             "uptime": uptime_str,
             "ollama_connected": ollama_health,
@@ -316,10 +317,10 @@ async def api_get_env(request):
     try:
         env_vars = env_manager.get_all()
         return web.json_response({
-            "telegram_token": env_vars.get("TELEGRAM_BOT_TOKEN", ""),
-            "discord_token": env_vars.get("DISCORD_BOT_TOKEN", ""),
-            "search_url": config.search_url,
-            "ollama_url": config.ollama.host,
+            "telegram_token": env_vars.get("TELEGRAM_BOT_TOKEN") or config.telegram.token or "",
+            "discord_token": env_vars.get("DISCORD_BOT_TOKEN") or config.discord.token or "",
+            "search_url": env_vars.get("SEARCH_ENGINE_URL") or config.search_url,
+            "ollama_url": env_vars.get("OLLAMA_HOST") or config.ollama.host,
             "email": {
                 "imap_host": config.email.imap_host,
                 "imap_port": config.email.imap_port,
@@ -490,7 +491,7 @@ DASHBOARD_HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouClaw V4.8.8 | Justice Neural Hub 🦞</title>
+    <title>YouClaw V4.8.9 | Justice Neural Hub 🦞</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -783,7 +784,7 @@ DASHBOARD_HTML = """
     <!-- Sidebar Navigation -->
     <nav class="sidebar" id="app-sidebar" style="display: none;">
         <div>
-            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.8.8</span></div>
+            <div class="sidebar-logo">🦞 YOUCLAW <span style="font-size: 0.6rem; color: var(--primary);">V4.8.9</span></div>
             <div class="nav-list">
                 <div class="nav-item active" id="nav-dash" onclick="switchView('dashboard')"><i>📊</i> Control Center</div>
                 <div class="nav-item" id="nav-chat" onclick="switchView('chat')"><i>💬</i> Neural Terminal</div>

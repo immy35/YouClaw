@@ -278,7 +278,7 @@ class YouClawCLI:
                 # PID file exists but process is dead, clean it up
                 pid_file.unlink()
 
-        print(f"🦞 Starting YouClaw v4.8.8 in background...")
+        print(f"🦞 Starting YouClaw v4.8.9 in background...")
         
         if foreground:
             print("🦞 Starting YouClaw in foreground mode...")
