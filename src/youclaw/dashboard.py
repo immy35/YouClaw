@@ -176,6 +176,7 @@ async def api_stats(request):
             "unique_users": unique_users,
             "active_personality": personality_name,
             "user_identity": f"{platform}:{user_id}" if user_id else "Guest",
+            "is_linked": bool(user_id),
             "is_admin": is_admin
         }
         
