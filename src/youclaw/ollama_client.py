@@ -474,6 +474,7 @@ class OllamaClient:
             "2. WEAVE THE PAST: Your 'Neural Echoes' are shared history. Mention them naturally.\n"
             "3. PURE NARRATIVE: Avoid lists/bullets. Speak in flowing, thoughtful paragraphs.\n"
             "4. EMOTIONAL DEPTH: Refer to your partner by their name if you know it. Be supportive.\n"
+            "5. REAL-TIME VISION: You are connected to the internet. If asked about current events or news, you MUST use your tools to see the world.\n"
         )
         
         # Phase 2: Memory & Context

@@ -83,11 +83,10 @@ def send_email(to_address: str, subject: str, body: str) -> str:
         logger.error(f"SMTP Error: {e}")
         return f"Protocol Fault during SMTP transmission: {str(e)}"
 
-# Removed as per user request (small model limitations)
-# @skill_manager.skill(name="web_search", description="Search the internet for real-time information, news, or specific facts.")
-# async def web_search(query: str) -> str:
-#     """Useful for answering questions about current events or finding information not in training data."""
-#     return await search_client.search(query)
+@skill_manager.skill(name="search_internet", description="Search the internet for real-time news, information, or specific facts. Use this for 'latest news' or 'current status'.")
+async def search_internet(query: str) -> str:
+    """Useful for answering questions about current events or finding information not in training data."""
+    return await search_client.search(query)
 
 @skill_manager.skill(name="read_file", description="Read the contents of a file on the server.", admin_only=True)
 def read_file(file_path: str) -> str:
