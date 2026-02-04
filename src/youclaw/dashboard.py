@@ -152,7 +152,7 @@ async def api_stats(request):
         except:
             uptime_str = "Unknown"
 
-        from personality_manager import PERSONALITIES, DEFAULT_PERSONALITY
+        from .personality_manager import PERSONALITIES, DEFAULT_PERSONALITY
         active_p = await memory_manager.get_global_setting("active_personality", DEFAULT_PERSONALITY)
         personality_name = PERSONALITIES.get(active_p, PERSONALITIES[DEFAULT_PERSONALITY])['name']
         
@@ -164,7 +164,7 @@ async def api_stats(request):
             ollama_health = False
         
         stats = {
-            "version": "4.8.9",
+            "version": "4.9.4",
             "status": "online",
             "uptime": uptime_str,
             "ollama_connected": ollama_health,
@@ -919,6 +919,11 @@ DASHBOARD_HTML = """
                     <div class="card" style="grid-column: span 12;">
                         <div class="card-title">⏰ Active Cron Jobs</div>
                         <div id="jobs-list" class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;"></div>
+                    </div>
+
+                    <div class="card" style="grid-column: span 12;">
+                        <div class="card-title">💬 Active Conversations</div>
+                        <div id="conversations-list" class="dashboard-grid" style="grid-template-columns: repeat(4, 1fr); gap: 24px;"></div>
                     </div>
                 </div>
 
