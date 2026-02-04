@@ -27,9 +27,11 @@ class OllamaConfig:
     def __post_init__(self):
         """Validate configuration"""
         if not self.host:
-            raise ValueError("OLLAMA_HOST must be set")
+            logger.warning("OLLAMA_HOST not found. Using default: http://localhost:11434")
+            self.host = "http://localhost:11434"
         if not self.model:
-            raise ValueError("OLLAMA_MODEL must be set")
+            logger.warning("OLLAMA_MODEL not found. Using default: qwen2.5:1.5b-instruct")
+            self.model = "qwen2.5:1.5b-instruct"
 
 
 @dataclass
