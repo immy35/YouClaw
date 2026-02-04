@@ -163,8 +163,8 @@ async def main():
     try:
         # Start Dashboard as a background task
         # We pass the bot instance so the dashboard can control it
-        logger.info("Starting Web Dashboard...")
-        youclaw_bot.dashboard_task = asyncio.create_task(run_dashboard(youclaw_bot, port=8080))
+        logger.info(f"Starting Web Dashboard on port {config.bot.dashboard_port}...")
+        youclaw_bot.dashboard_task = asyncio.create_task(run_dashboard(youclaw_bot, port=config.bot.dashboard_port))
         
         # Start bot handlers (this blocks until shutdown)
         await youclaw_bot.start()

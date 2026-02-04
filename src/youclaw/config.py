@@ -87,6 +87,7 @@ class BotConfig:
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
     search_url: str = os.getenv("SEARCH_ENGINE_URL", "http://57.128.250.34:8080/search")
     admin_user_identity: str = os.getenv("ADMIN_USER_IDENTITY", "telegram:default") # format platform:id
+    dashboard_port: int = int(os.getenv("DASHBOARD_PORT", "8080"))
     
     def __post_init__(self):
         """Validate configuration"""
