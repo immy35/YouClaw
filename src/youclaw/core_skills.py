@@ -144,10 +144,9 @@ async def schedule_reminder(message: str, minutes_from_now: int, platform: str, 
     )
     return f"I've scheduled your reminder for '{message}' in {minutes_from_now} minutes."
 
-@skill_manager.skill(name="store_secret", description="Securely store a personal secret (like an API key).")
+@skill_manager.skill(name="store_secret", description="Securely store a technical token or API key (e.g., OpenAI Key, GitHub Token). NOT for personal names or interests.")
 async def store_secret(key: str, value: str, platform: str, user_id: str) -> str:
-    """Useful for when the user provides a token or key that they want the bot to remember for future actions.
-    The secret is stored ONLY for this specific user on this platform."""
+    """Stores sensitive system credentials. Use this ONLY for tokens, keys, and technical secrets."""
     from .memory_manager import memory_manager
     await memory_manager.set_user_secret(platform, user_id, key, value)
     return f"I've securely stored your '{key}' secret."
