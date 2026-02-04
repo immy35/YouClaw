@@ -254,6 +254,7 @@ async def api_schedule_job(request):
         prompt = data.get('prompt')
         frequency = data.get('frequency', '60')
         channel = data.get('channel', req_platform) # Default to user's platform
+        realtime = data.get('realtime', True)
         
         if not prompt:
             return web.json_response({"error": "Prompt required"}, status=400)
@@ -262,7 +263,7 @@ async def api_schedule_job(request):
         job_id = f"cron_{hashlib.md5(f'{req_user_id}{prompt}{channel}'.encode()).hexdigest()[:8]}"
         cron_expr = f"*/{frequency} * * * *" if int(frequency) < 60 else f"0 */{int(int(frequency)/60)} * * *"
         
-        await scheduler_manager.add_ai_cron_job(channel, req_user_id, prompt, cron_expr, job_id)
+        await scheduler_manager.add_ai_cron_job(channel, req_user_id, prompt, cron_expr, job_id, realtime=realtime)
         return web.json_response({"success": True, "job_id": job_id})
     except Exception as e:
         return web.json_response({"error": str(e)}, status=500)
@@ -1040,7 +1041,11 @@ DASHBOARD_HTML = """
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-primary" style="width: 100%;" onclick="scheduleCron()">Activate Cron Job 🚀</button>
+                        <div class="input-group" style="flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;">
+                            <input type="checkbox" id="cron-realtime" style="width: 20px; height: 20px;" checked>
+                            <label for="cron-realtime" style="margin-bottom: 0;">Enable Real-Time Vision (Live Search)</label>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="scheduleCron()">Activate Cron Job 🚀</button>
                     </div>
 
                     <div class="card" style="grid-column: span 12;">
@@ -1345,15 +1350,19 @@ DASHBOARD_HTML = """
         async function scheduleCron() {
             const prompt = document.getElementById('cron-prompt').value;
             const freq = document.getElementById('cron-freq').value;
+            const chan = document.getElementById('cron-channel').value;
+            const realtime = document.getElementById('cron-realtime').checked;
+            
+            if(!prompt) return showToast("Mission details required.", "error");
+            
             const sel = document.getElementById('cron-channel');
-            const channel = sel.value;
-            if(!prompt) return showToast("Briefing required.", "error");
             if(sel.options[sel.selectedIndex].disabled) return showToast("Selected channel is offline. Activate it first.", "error");
             
             const res = await apiCall('/api/jobs/schedule', 'POST', { 
                 prompt: prompt, 
                 frequency: freq,
-                channel: channel 
+                channel: chan,
+                realtime: realtime
             });
             if(res.success) {
                 showToast("Cron Job Activated! 🚀", "success");

@@ -90,25 +90,25 @@ class SchedulerManager:
         """Actual delivery of the message via the bot handlers"""
         await send_notification_task(platform, user_id, message)
 
-    async def add_ai_cron_job(self, platform: str, user_id: str, prompt: str, cron_expr: str, job_id: str):
+    async def add_ai_cron_job(self, platform: str, user_id: str, prompt: str, cron_expr: str, job_id: str, realtime: bool = True):
         """Schedule a recurring AI reasoning task"""
         # 1. Schedule the recurring job
         self.scheduler.add_job(
             run_ai_job_task,
             'cron',
-            args=[platform, user_id, prompt],
+            args=[platform, user_id, prompt, realtime],
             id=job_id,
             replace_existing=True,
             **self._parse_cron(cron_expr)
         )
-        logger.info(f"💾 Scheduled AI Pulse job {job_id} for {user_id}")
+        logger.info(f"💾 Scheduled AI Pulse job {job_id} for {user_id} (Realtime={realtime})")
 
         # 2. Trigger one instance IMMEDIATELY so the user knows it works
         self.scheduler.add_job(
             run_ai_job_task,
             'date',
             run_date=datetime.now(),
-            args=[platform, user_id, prompt],
+            args=[platform, user_id, prompt, realtime],
             id=f"{job_id}_initial"
         )
         logger.info(f"🚀 Triggered immediate run for job {job_id}")
@@ -167,13 +167,13 @@ async def run_cron_task_worker(platform: str, user_id: str, task_func: Callable)
     except Exception as e:
         logger.error(f"Error in cron task execution: {e}")
 
-async def run_ai_job_task(platform: str, user_id: str, prompt: str):
-    """Executes a full AI reasoning loop and sends the result to the user"""
+async def run_ai_job_task(platform: str, user_id: str, prompt: str, realtime: bool = True):
+    """Internal task for AI logical reasoning flows"""
     from .memory_manager import memory_manager
     from .ollama_client import ollama_client
     from datetime import datetime
     
-    logger.info(f"🤖 [CORE] Starting AI Cron Job: User={user_id} Platform={platform}")
+    logger.info(f"🤖 [CORE] Starting AI Cron Job: User={user_id} Platform={platform} Realtime={realtime}")
     logger.debug(f"Prompt: {prompt[:100]}...")
     
     # Fetch recent history to avoid repetition
@@ -184,7 +184,8 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
         "platform": platform,
         "user_id": user_id,
         "current_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "FORCE_VISION": True
+        "FORCE_VISION": realtime,
+        "original_prompt": prompt
     }
     
     # Enhance prompt with variation instructions
@@ -208,9 +209,9 @@ async def run_ai_job_task(platform: str, user_id: str, prompt: str):
         logger.info(f"🧠 [CORE] AI processed cron request. Response length: {len(response) if response else 0}")
         
         if response:
-            logger.info(f"AI Cron Job for {user_id} produced response (length: {len(response)}). Sending...")
-            await send_notification_task(platform, user_id, f"### ⚡ **Cron Job Update**\n\n{response}")
-            logger.info(f"AI Cron Job for {user_id} delivered.")
+            # Send message to user
+            await send_notification_task(platform, user_id, response)
+            logger.info(f"✅ AI Cron Job for {user_id} delivered.")
         else:
             logger.warning(f"AI Cron Job for {user_id} produced empty response.")
     except Exception as e:
