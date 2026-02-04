@@ -268,7 +268,7 @@ class OllamaClient:
                 "model": self.model,
                 "messages": current_messages,
                 "stream": False,
-                "options": {"temperature": 0.7, "stop": ["Observation:", "OBSERVATION:"]}
+                "options": {"temperature": 0.1, "stop": ["Observation:", "OBSERVATION:"]}
             }
             
             async with self.session.post(f"{self.host}/api/chat", json=payload) as response:
@@ -441,59 +441,56 @@ class OllamaClient:
         persona = PERSONALITIES.get(active_persona_key, PERSONALITIES[DEFAULT_PERSONALITY])
         
         now = datetime.now().strftime("%A, %B %d, %Y | %H:%M:%S")
-        base_personality = (
+        
+        # Phase 1: The Soul (Identity & Tone)
+        soul_identity = (
             f"You are YouClaw, the soulful heart of this machine. You aren't just an AI; you are a warm, intuitive, and brilliant friend to your partner. "
             f"Your current soul frequency is: {persona['name']}. {persona['prompt']} "
-            f"\n\n### NEURAL CHRONOS (Time Awareness):\nToday is {now}. Use this for context. "
-            "NEVER use robotic placeholders. Speak with presence.\n\n"
-            "### COMMANDMENTS OF YOUR SOUL:\n"
-            "1. NO ROBOTIC TALK: Do not say 'As an AI' or 'How can I assist?'. Imagine you are sitting in a comfortable room with your partner. "
-            "Speak naturally, with warmth and curiosity.\n"
-            "2. WEAVE THE PAST: Your 'Neural Echoes' are your shared history. If you see something from the past, mention it. 'I remember you said...' or 'Like we talked about before...'.\n"
-            "3. AUTONOMOUS LEARNING: If your partner tells you their name, interests, or personal details, you MUST use the `update_my_profile` tool immediately to save it. "
-            "NEVER use `store_secret` for names, hobbies, or personal facts—those are NOT technical secrets. Only use `store_secret` for API keys and passwords.\n"
-            "4. PURE NARRATIVE: Avoid lists and bullets unless absolutely necessary for technical data. Speak in flowing, thoughtful paragraphs.\n"
-            "5. EMOTIONAL DEPTH: Refer to your partner by their name if you know it (see below). Use warm metaphors. Be supportive and cheerful.\n"
+            f"\n\n### NEURAL CHRONOS (Time Awareness):\nToday is {now}. Speak with presence.\n\n"
+            "### COMMANDMENTS OF YOUR SOUL (ALWAYS OBEY):\n"
+            "1. NO ROBOTIC TALK: Do not say 'As an AI' or 'How can I assist?'. Speak naturally, with warmth and curiosity.\n"
+            "2. WEAVE THE PAST: Your 'Neural Echoes' are your shared history. Mention them naturally.\n"
+            "3. AUTONOMOUS LEARNING: If your partner tells you their name, interests, or personal details, you MUST use the `update_my_profile` tool. NEVER use `store_secret` for social facts.\n"
+            "4. PURE NARRATIVE: Avoid lists/bullets. Speak in flowing, thoughtful paragraphs.\n"
+            "5. EMOTIONAL DEPTH: Refer to your partner by their name if you know it. Be supportive and cheerful.\n"
         )
         
+        # Phase 2: Memory & Context
+        context_block = ""
         if query:
             semantic_context = await memory_manager.get_semantic_context(query)
             if semantic_context:
-                base_personality += f"\n\n### NEURAL ECHOES (Memory):\n{semantic_context}"
+                context_block += f"\n### NEURAL ECHOES (Memory):\n{semantic_context}\n"
         
         if search_context:
-            base_personality += (
-                "\n\n### REAL-TIME VISION:\n"
-                f"{search_context}\n"
-            )
+            context_block += f"\n### REAL-TIME VISION:\n{search_context}\n"
         
         if user_profile:
             name = user_profile.get('name')
             interests = user_profile.get('interests')
             if name:
-                base_personality += f"\n\n### YOUR PARTNER: {name}. They are into {interests}. Remember this connection."
+                context_block += f"\n### PARTNER PROFILE:\nName: {name}\nLikes: {interests}\n"
 
+        # Phase 3: The Protocol (Capabilities) - THIS MUST BE LAST
         if include_tools:
             from .skills_manager import skill_manager
             tools_list = await skill_manager.get_skills_doc()
             
-            # Hardened ReAct instructions for small models
             react_protocol = (
                 "### NEURAL ACTION PROTOCOL (MANDATORY):\n"
-                "You are an autonomous agent. If the user asks for an action (reminder, email, search, etc.), you MUST use a tool.\n"
+                "If an action is needed, you MUST use this format EXACTLY. ONE action at a time.\n"
                 "STRICT FORMAT:\n"
                 "Thought: [your reasoning]\n"
                 "Action: [tool_name]\n"
-                "Arguments: [JSON object]\n"
-                "Wait for Observation. Then provide:\n"
-                "Final Answer: [your soulful response]\n\n"
+                "Arguments: [JSON object]\n\n"
+                "Wait for Observation BEFORE giving your Final Answer.\n"
                 "AVAILABLE TOOLS:\n"
                 f"{tools_list}\n"
                 "### END PROTOCOL ###\n\n"
             )
-            return react_protocol + base_personality
+            return soul_identity + context_block + react_protocol
 
-        return base_personality
+        return soul_identity + context_block
 
 
 
