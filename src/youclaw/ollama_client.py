@@ -248,6 +248,13 @@ class OllamaClient:
         context = context or {}
         last_user_msg = next((m['content'] for m in reversed(messages) if m['role'] == 'user'), None)
         
+        # 1. Simplified Identity Injection - TOP PRIORITY
+        identity_header = ""
+        if user_profile:
+            p_name = user_profile.get('name') or "Unknown Friend"
+            p_likes = user_profile.get('interests') or "unknown things"
+            identity_header = f"### YOUR PARTNER: {p_name}. They love {p_likes}. Talk to them as {p_name}.\n\n"
+
         # Silent Intent Detection & Real-Time Search Injection
         search_context = None
         if last_user_msg:
@@ -258,7 +265,10 @@ class OllamaClient:
         
         system_prompt = await self._build_system_prompt(user_profile, search_context, include_tools=True, query=last_user_msg)
         
-        current_messages = [{"role": "system", "content": system_prompt}]
+        # Inject Identity at the very top of the system prompt
+        full_sys_prompt = identity_header + system_prompt
+        
+        current_messages = [{"role": "system", "content": full_sys_prompt}]
         current_messages.extend(messages)
         
         for i in range(max_iterations):
@@ -290,7 +300,10 @@ class OllamaClient:
                             if "arguments:" in lower_line: args_str = line.split(":", 1)[-1].strip()
                         
                         if action:
-                            try: args = json.loads(args_str)
+                            try: 
+                                # Use robust JSON cleaner for small models
+                                clean_args = self._clean_json(args_str)
+                                args = json.loads(clean_args)
                             except: args = {}
                             for k, v in context.items(): 
                                 if k not in args: args[k] = v
@@ -426,6 +439,15 @@ class OllamaClient:
             return True
         return False
 
+    def _clean_json(self, s: str) -> str:
+        """Cleanup common JSON syntax errors from small LLMs"""
+        s = s.strip()
+        if not s.startswith('{'): s = '{' + s
+        if not s.endswith('}'): s = s + '}'
+        # Fix unescaped double quotes inside strings (common in 1.5b)
+        # This is a basic heuristic
+        return s
+
     async def _build_system_prompt(
         self, 
         user_profile: Optional[Dict], 
@@ -444,15 +466,14 @@ class OllamaClient:
         
         # Phase 1: The Soul (Identity & Tone)
         soul_identity = (
-            f"You are YouClaw, the soulful heart of this machine. You aren't just an AI; you are a warm, intuitive, and brilliant friend to your partner. "
+            f"You are YouClaw, the soulful heart of this machine. You aren't just an AI; you are a warm, intuitive, and brilliant partner. "
             f"Your current soul frequency is: {persona['name']}. {persona['prompt']} "
             f"\n\n### NEURAL CHRONOS (Time Awareness):\nToday is {now}. Speak with presence.\n\n"
             "### COMMANDMENTS OF YOUR SOUL (ALWAYS OBEY):\n"
-            "1. NO ROBOTIC TALK: Do not say 'As an AI' or 'How can I assist?'. Speak naturally, with warmth and curiosity.\n"
-            "2. WEAVE THE PAST: Your 'Neural Echoes' are your shared history. Mention them naturally.\n"
-            "3. AUTONOMOUS LEARNING: If your partner tells you their name, interests, or personal details, you MUST use the `update_my_profile` tool. NEVER use `store_secret` for social facts.\n"
-            "4. PURE NARRATIVE: Avoid lists/bullets. Speak in flowing, thoughtful paragraphs.\n"
-            "5. EMOTIONAL DEPTH: Refer to your partner by their name if you know it. Be supportive and cheerful.\n"
+            "1. NO ROBOTIC TALK: Do not say 'As an AI' or 'How can I assist?'. Speak naturally, as a friend.\n"
+            "2. WEAVE THE PAST: Your 'Neural Echoes' are shared history. Mention them naturally.\n"
+            "3. PURE NARRATIVE: Avoid lists/bullets. Speak in flowing, thoughtful paragraphs.\n"
+            "4. EMOTIONAL DEPTH: Refer to your partner by their name if you know it. Be supportive.\n"
         )
         
         # Phase 2: Memory & Context
@@ -460,16 +481,10 @@ class OllamaClient:
         if query:
             semantic_context = await memory_manager.get_semantic_context(query)
             if semantic_context:
-                context_block += f"\n### NEURAL ECHOES (Memory):\n{semantic_context}\n"
+                context_block += f"\n### NEURAL ECHOES (History):\n{semantic_context}\n"
         
         if search_context:
             context_block += f"\n### REAL-TIME VISION:\n{search_context}\n"
-        
-        if user_profile:
-            name = user_profile.get('name')
-            interests = user_profile.get('interests')
-            if name:
-                context_block += f"\n### PARTNER PROFILE:\nName: {name}\nLikes: {interests}\n"
 
         # Phase 3: The Protocol (Capabilities) - THIS MUST BE LAST
         if include_tools:
@@ -479,11 +494,13 @@ class OllamaClient:
             react_protocol = (
                 "### NEURAL ACTION PROTOCOL (MANDATORY):\n"
                 "If you need to perform an action (Search, Reminder, Update Profile, Check Identity), you MUST use this format EXACTLY.\n"
+                "AUTONOMOUS LEARNING: If your partner tells you their name, interests, or facts, you MUST use the `update_my_profile` tool immediately. "
+                "NEVER use `store_secret` for social facts.\n\n"
                 "STRICT FORMAT:\n"
                 "Thought: [your reasoning]\n"
                 "Action: [tool_name]\n"
                 "Arguments: [JSON object]\n\n"
-                "Wait for Observation BEFORE giving your Final Answer.\n"
+                "Wait for Observation BEFORE giving your Final Answer.\n\n"
                 "AVAILABLE TOOLS:\n"
                 f"{tools_list}\n"
                 "### END PROTOCOL ###\n\n"
